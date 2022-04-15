@@ -4,7 +4,7 @@
 
 1. Intro
     1. EF Core makes it easy to store your objects in a database without writing much, if any, database code.
-    1. It supports a lot of different database engines, like SQL Server, Postgres, and MySQL.
+    1. It supports a lot of different database engines, like SQL Server, Postgres, and Azure Cosmos DB.
 
 1. Walkthrough
     1. File > New Project > Console App
