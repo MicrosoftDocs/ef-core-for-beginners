@@ -35,7 +35,7 @@
     1. displayproducts snippet in *Program.cs* to read a filtered, ordered list of products to console. 
     1. linqproducts snippet to change previous query to Linq format. Build & run. 
     1. updateproduct snippet in *Program.cs* to modify a single product (price increase). Build & run. P
-    1. Replace line that  sets price with `context.Remove(squeakyBone);` in *Program.cs* to delete a single product. Build & run.
+    1. Replace line that  sets price with `context.Remove(threeMeat);` in *Program.cs* to delete a single product. Build & run.
 
 1. Outro
     1. Check out aka.ms/learn-ef-core!
