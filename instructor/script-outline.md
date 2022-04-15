@@ -9,7 +9,7 @@
 1. Walkthrough
     1. File > New Project > Console App
         1. Paste in location - C:\Src\ef-core-101\parts\1 - Getting Started
-    1. Add NuGet Packages (Manage NuGet Packages dialog - include prerelease checkbox - or something for version numbers)
+    1. Add NuGet Packages (Manage NuGet Packages dialog)
         1. `Microsoft.EntityFrameworkCore.SqlServer`
         1. `Microsoft.EntityFrameworkCore.Design`
         1. `Microsoft.EntityFrameworkCore.Tools`
@@ -17,7 +17,7 @@
         1. Explain that we're building [this database](https://docs.microsoft.com/en-us/learn/aspnetcore/persist-data-ef-core/media/4-design-domain-model/database-diagram.png)
         1. *Product.cs* (product snippet)
             - `Id` is primary key (by convention - explain equivalent to `[Key]`)
-            - `[Required]` attribute on Name property
+            - `[Required]` attribute on Name property -- EF Core doesn't enforce validation!
             - `[Column]` attribute on Price property
         1. *Customer.cs* (customer snippet)
             - `Orders` navigation property => One-to-many relationship
