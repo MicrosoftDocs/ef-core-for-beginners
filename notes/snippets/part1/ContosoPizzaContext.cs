@@ -12,6 +12,6 @@ public class ContosoPizzaContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;ConnectRetryCount=0");
+        optionsBuilder.UseSqlServer(@"Connection String Here");
     }
 }

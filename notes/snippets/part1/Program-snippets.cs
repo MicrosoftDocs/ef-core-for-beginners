@@ -27,7 +27,7 @@ context.SaveChanges();
 #region displayproducts
 
 var products = context.Products
-                    .Where(p => p.Price >= 5.00m)
+                    .Where(p => p.Price > 10.00M)
                     .OrderBy(p => p.Name);
 
 foreach (Product p in products)
@@ -43,7 +43,7 @@ foreach (Product p in products)
 #region linqproduct
 
 var products = from product in context.Products
-               where product.Price > 5.00m
+               where product.Price > 10.00M
                orderby product.Name
                select product;
 

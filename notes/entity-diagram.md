@@ -6,6 +6,7 @@ erDiagram
     Order ||--|{ OrderDetail : contains
     Product }|--|{ OrderDetail : "ordered in"
     Customer {
+        int Id
         string FirstName
         string LastName
         string Address
@@ -13,13 +14,19 @@ erDiagram
         string Email
     }
     Order {
+        int Id
         timestamp OrderPlaced
         timestamp OrderFulfilled
+        int CustomerId
     }
     OrderDetail {
+        int Id
         int Quantity
+        int OrderId
+        int ProductId
     }
     Product {
+        int Id
         string Name
         decimal Price
     }
