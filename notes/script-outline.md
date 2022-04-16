@@ -4,7 +4,7 @@
 
 1. Intro
     1. EF Core makes it easy to store your objects in a database without writing much, if any, database code.
-    1. It supports a lot of different database engines, like SQL Server, Postgres, and MySQL.
+    1. It supports a lot of different database engines, like SQL Server, Postgres, and Azure Cosmos DB.
 
 1. Walkthrough
     1. File > New Project > Console App
@@ -35,7 +35,7 @@
     1. displayproducts snippet in *Program.cs* to read a filtered, ordered list of products to console. 
     1. linqproducts snippet to change previous query to Linq format. Build & run. 
     1. updateproduct snippet in *Program.cs* to modify a single product (price increase). Build & run. P
-    1. Replace line that  sets price with `context.Remove(squeakyBone);` in *Program.cs* to delete a single product. Build & run.
+    1. Replace line that  sets price with `context.Remove(veggieSpecial);` in *Program.cs* to delete a single product. Build & run.
 
 1. Outro
     1. Check out aka.ms/learn-ef-core!
