@@ -17,3 +17,6 @@ RUN bash ./installSQLtools.sh \
 
 # [Optional] Uncomment this line to install global node packages.
 # RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+
+# Add .NET global tools to path
+RUN echo "export PATH=\"$PATH:/root/.dotnet/tools\"" >> ~/.bashrc

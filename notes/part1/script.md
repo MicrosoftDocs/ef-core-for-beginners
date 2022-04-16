@@ -25,7 +25,7 @@ You may be wondering why I've initialized NAME as null with an exclamation point
 
 The next class we're going to add will be the customer class. Here we're using nullable and non-nullable reference types which database fields should allow nulls and which ones shouldn't. Since FIRSTNAME and LASTNAME are non-nullable strings, EF Core knows that when it creates the table, those two columns should not allow nulls.
 
-The ADDRESS and PHONE properties, on the other hand, are nullable strings, so the database will allow nulls in those columns.
+The ADDRESS and PHONE properties, on the other hand, are nullable strings, so the database will allow nulls in those columns. We don't need to initialize these because they are declared as nullable.
 
 Finally, the last property on the class, called ORDERS, is a collection of ORDER objects. We haven't created the order class yet, we're going to do that in just a second. This is called a navigation property, and it indicates that a customer may have zero or more orders. This creates a one-to-many relationship in the database that gets generated.
 
@@ -47,13 +47,17 @@ we have a use SQL Server extension method available to us that configures the SQ
 
 So now that we've created our entity model, we're going to create something called a migration. The EF Core migrations feature is a tool that makes it easy to create and evolve our database.
 
-I'm going to use the Package Manager Console to run the Add-Migration commandlet. I'm going to name my migration InitialCreate.
+Since I'm using Visual Studio, I'm going to use the Package Manager Console to run the Add-Migration commandlet. I'll name my migration InitialCreate.
+
+If I was using a different IDE or the .NET CLI, I would first install the dotnet-ef tool as a global tool. Then I would use the `dotnet ef database update` command to create the InitialCreate migration.
 
 Let's take a look at the generated code. We should look it over to make sure it's accurate and that it creates the table the way we want it to be created.
 
 Looking at the products table as an example, we can see where it's creating our identity column, our primary key, our Name (which is not nullable), and our price, decimal with two decimal points of precision.
 
-I'm satisfied that the migration is correct, so I'll run the migration with the Update-Database commandlet. Now let's take a look at the database that was created.
+I'm satisfied that the migration is correct, so I'll run the migration with Visual Studio's Update-Database commandlet. The equivilent .NET CLI command is `dotnet ef database update`.
+
+Now let's take a look at the database that was created.
 
 The first table we're going to look at is this one that we didn't create at all, EF migration history. This table is used by Entity Framework Core to track which migrations have been run against this database.
 
