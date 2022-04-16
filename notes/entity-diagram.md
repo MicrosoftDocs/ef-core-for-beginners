@@ -4,7 +4,7 @@
 erDiagram
     Customer ||--o{ Order : places
     Order ||--|{ OrderDetail : contains
-    Product }|--|{ OrderDetail : ordered-in
+    Product }|--|{ OrderDetail : "ordered in"
     Customer {
         string FirstName
         string LastName
@@ -17,9 +17,7 @@ erDiagram
         timestamp OrderFulfilled
     }
     OrderDetail {
-        string productCode
-        int quantity
-        decimal Price
+        int Quantity
     }
     Product {
         string Name
