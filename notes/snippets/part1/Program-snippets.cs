@@ -1,21 +1,24 @@
 
 #region addproducts
 
+using ContosoPizza.Data;
+using ContosoPizza.Models;
+
 using ContosoPizzaContext context = new ContosoPizzaContext();
 
 Product veggieSpecial = new Product()
 {
-   Name = "Veggie Special",
-   Price = 9.99M
+    Name = "Veggie Special Pizza",
+    Price = 9.99M
 };
 context.Products.Add(veggieSpecial);
 
-Product meatLovers = new Product()
+Product deluxeMeat = new Product()
 {
-   Name = "Meat Lovers",
-   Price = 12.99M
+    Name = "Deluxe Meat Pizza",
+    Price = 12.99M
 };
-context.Add(meatLovers);
+context.Add(deluxeMeat);
 
 context.SaveChanges();
 
@@ -48,13 +51,13 @@ var products = from product in context.Products
 
 #region updateproduct
 
-var meatLovers = context.Products
-                       .Where(p => p.Name == "Meat Lovers")
+var veggieSpecial = context.Products
+                       .Where(p => p.Name == "Veggie Special Pizza")
                        .FirstOrDefault();
 
-if (meatLovers is Product)
+if (veggieSpecial is Product)
 {
-   context.Remove(meatLovers);
+    veggieSpecial.Price = 10.99M;
 }
 
 context.SaveChanges();
