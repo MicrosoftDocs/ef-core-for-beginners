@@ -1,6 +1,8 @@
-# EF Core 101 video series
+# Entity Framework Core video series
 
-## Part 1: Intro to EF Core (13 mins)
+> Please note: This is a rough working outline for this series. It was used to create the scripts for each part. The final videos may contain variations and adjustments.
+
+## Part 1: Intro to EF Core (15 mins)
 
 1. Intro
     1. EF Core makes it easy to store your objects in a database without writing much, if any, database code.
@@ -40,7 +42,7 @@
 1. Outro
     1. Check out aka.ms/learn-ef-core!
 
-## Part 2: Working with an Existing Database (< 5 min)
+## Part 2: Working with an Existing Database (10 min)
 
 1. Intro
 
@@ -114,11 +116,11 @@
 1. Intro
 
 1. Walkthrough
-    1. [No-tracking Queries](https://docs.microsoft.com/en-us/ef/core/querying/tracking#no-tracking-queries)
+    1. [No-tracking Queries](https://docs.microsoft.com/ef/core/querying/tracking#no-tracking-queries)
         1. Explain change tracking (tracking a snapshot).
             - Don't need resources to track large result sets
         1. `.AsNoTracking()` on *Products\Details.cshtml.cs*
-    1. [Loading related entities](https://docs.microsoft.com/en-us/ef/core/querying/related-data)
+    1. [Loading related entities](https://docs.microsoft.com/ef/core/querying/related-data)
         1. *Customer\Details.cshtml*
     1. `.FromSqlInterpolated()`
         1) fromsql snippet - Replace query in *Products\Index.cshtml.cs* to filter results
