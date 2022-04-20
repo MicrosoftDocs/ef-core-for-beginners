@@ -1,3 +1,31 @@
+# Entity Framework Core for Beginners video series
+
+Hi, friend! You've found the code and other materials to accompany the Entity Framework Core for Beginners video series. We hope you'll find it informative.
+
+Before you do anything else, we recommend you watch the bonus video, *How to code along with these videos*.
+
+# Relevant links
+
+## Bonus
+
+- [Developing inside a container (Visual Studio Code)](https://code.visualstudio.com/docs/remote/containers)
+- [GitHub Codespaces (Visual Studio Code)](https://code.visualstudio.com/docs/remote/codespaces)
+
+## Part 1
+
+- [Null safety in C#](https://docs.microsoft.com/learn/modules/csharp-null-safety/)
+- [Migrations Overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)
+- [Persist and retrieve relational data with Entity Framework Core](https://docs.microsoft.com/learn/modules/persist-data-ef-core/)
+
+## Part 2
+
+- [Reverse Engineering](https://docs.microsoft.com/ef/core/managing-schemas/scaffolding)
+
+## Part 3
+
+## Part 4
+
+## Part 5
 
 # Contributing
 

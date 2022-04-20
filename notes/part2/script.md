@@ -4,17 +4,17 @@
 
 Hi, friends! Welcome back to Entity Framework Core for Beginners.
 
-In our previous video, I showed you how easy it is to use Entity Framework Core to create and work with a new database. We defined our entities in code before we built the database. Using that approach, we're treating the code as the authoritative "source of truth" regarding the shape of our entity model.
+In our previous video, I showed you how easy it is to use Entity Framework Core migrations to create and work with a new database. We defined our entity model in code before we built the database. Then we used migrations to change the database as we made changes to the model. When we use that approach, we're treating the code as the authoritative "source of truth" regarding the shape of our entities.
 
-In this video, we're going to show you how to use Entity Framework Core to work with an existing database by reverse engineering it. This approach treats the database as the source of truth. 
+In this video, I'm going to show you how to use Entity Framework Core to work with an existing database by reverse engineering it. This approach treats the database as the source of truth. 
 
-Looking at Visual Studio, I have a brand new console app that doesn't have any code added to it at all. I've already added the Microsoft.EntityFrameworkCore.SqlServer, .Design, and.Tools NuGet packages.
+Looking at Visual Studio, I have a brand new console app that doesn't have any code added to it at all. I've already added the Microsoft.EntityFrameworkCore.SqlServer, .Design, and .Tools NuGet packages.
 
-I have an existing database. This database is already populated. Let's assume it's was created and maintained by my organization's Database Administrator.
+I have an existing database. This database is already populated. Let's assume was created and maintained by my organization's Database Administrator.
 
-To reverse engineer the database and create my entity model code, I'll start by using the Scaffold-DbContext commandlet. I'm going to pass in the connection string, I'm going to pass in the name of the provider so it knows what type of database to execute the connection string on, and then I'm going to optionally specify an output directory and a name for the database context.
+To reverse engineer the database and create my entity model code, I'll start by using the Scaffold-DbContext commandlet. I'm going to pass in the connection string (which can be found in the notes). I'm going to pass in the name of the provider so it knows what type of database to execute the connection string on, and then I'm going to optionally specify output directories for the dbcontext and models.
 
-If you're using the .NET CLI, the command is <command>. The parameters are basically the same. You can find the connection strings in the notes for this part.
+If you're using the .NET CLI, the command is `dotnet ef dbcontext scaffold`. The parameters are similar.
 
 Now that the Scaffold is run, we have a complete working entity model.
 
@@ -26,16 +26,14 @@ If we'd like to generate an entity model that looks more like the one we created
 
 Here's what that looks like with the .NET CLI.
 
-This time, the product's entity has data attributes that describe the behavior of the properties, as you can see, and the OnModelCreating method in the database context is much more sparse.
+This time, the product's entity has data attributes that describe the behavior of the properties. The OnModelCreating method in the database context is much more sparse.
 
 You might be wondering, what do we do when the database schema changes? There are two strategies. Let's look at the first one.
 
-I'm going to delete my entity model and re-scaffold it again, this time using the OnModelCreating method we used earlier.
+The first strategy is a manual approach. This approach requires you to manually edit your entitity model to keep in sync with the database schema. The generated dbcontext and models can thought of as a starting point for ongoing development, similar to scaffolded razor pages in ASP.NET Core.
 
-Let's pretend like we're the database administrator. I'm going to use an ALTER TABLE SQL statement to add a new Email column to the CUSTOMER table in the ContosoPizza-Part2 database.
+The other strategy is just rescaffolding the entity model whenever the database schema changes. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. I'm going to delete my entity model and re-scaffold. This time, I'm going to generate the models in a subdirectory of the Models directory.
 
-The first strategy I could use is just rescaffolding the entity model again. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. 
-
-The other strategy is a manual hybrid approach. This approach requires you to manually edit your entitity model to keep in sync with the database schema. I'm going to use that approach to add the Email
+Now I can create partial classes in the Models directory to contain my business logic.
 
 Now that we've seen how Entity Framework Core can work with an existing database, in the next video, I'm going to show you how to use Entity Framework Core with ASP.NET Core to streamline your web development.

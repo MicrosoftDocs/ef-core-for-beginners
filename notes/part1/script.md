@@ -50,11 +50,11 @@ So now that we've created our entity model, we're going to create something call
 
 Since I'm using Visual Studio, I'm going to use the Package Manager Console to run the Add-Migration commandlet. I'll name my migration InitialCreate.
 
-If you're not using Visual Studio, you can do these same tasks using the .NET CLI. First install the dotnet-ef tool as a global tool. Then use the `dotnet ef database update` command to create the InitialCreate migration.
+If you're not using Visual Studio, you can do these same tasks using the .NET CLI. First install the dotnet-ef tool as a global tool. Then use the `dotnet ef migrations add` command to create the InitialCreate migration.
 
 Going back to Visual Studio, let's take a look at the generated migration. We should look it over to make sure it's accurate and  it creates the table the way we want it to be created.
 
-Looking at the products table as an example, we can see where it's creating our identity column, our primary key, our Name (which is not nullable), and our price, which is a decimal with two  points of precision.
+Looking at the products table as an example, we can see where it's creating our identity column, our primary key, our Name (which is not nullable), and our price, which is a decimal with two points of precision.
 
 I'm satisfied that the migration is correct, so I'll run the migration with Visual Studio's Update-Database commandlet. The equivilent .NET CLI command is `dotnet ef database update`.
 
