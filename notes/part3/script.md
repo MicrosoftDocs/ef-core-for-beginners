@@ -4,45 +4,48 @@
 
 Hi, friends! Welcome back to Entity Framework Core for Beginners.
 
-In this video, I'm going to show you how you can use Entity Framework Core with ASP.NET Core scaffolding to streamline your web development.
+In this video, I'm going to show you how you can use Entity Framework Core with ASP.NET Core scaffolding to streamline your web development. Let's get to it!
 
-Here I've got a mostly empty web application. This web application already has a `ContosoPizzaContext` class, as well as an entity model. The entity model reflects a working database that's already running in production. We're going to build some Razor pages to 
+I've already created an empty ASP.NET Core Razor Pages web app. I used the command I showed you in the last video to scaffold a `DbContext` and models against that same database. Now we're going to scaffold some Razor pages that use the `DbContext` to interact with the database.
 
-The first thing I'm going to do is I'm going to register our `ContosoPizzaContext` with ASP.NET Core's dependency injection container.
+The first thing I'm going to do is in *Program.cs*. I'll paste in some code to and then I'll add the `using` directives to resolve those references.
 
-The way I do this is by calling `AddDbContext` on `tbd` in *Program.cs*
-You'll note that we're passing in use SQL Server on the options along with our connection string.
+The `AddDbContext` extension method registers `ContosoPizzaContext` with ASP.NET Core's dependency injection container. We pass the method a lambda expression that configures EF Core to use the SQL Server database provider using a connection string retrieved from configuration.
 
-We're going to use the scaffold to generate razor pages to support adding, editing, deleting, and reading products.
+In the previous videos, I've mentioned that it's a bad practice to store your connection strings with your code. The .NET Secrets Manager gives us a mechanism to separate our secrets from our code. Let's use the .NET secrets manager to manage to store that connection string.
 
-I've created a product's folder and on that folder I'm going to right-click, go to "Add Razor Pages" and Razor Pages using Entity Framework CRUD.
+I'm right-clicking on the project and selecting **Manage User Secrets**. Visual Studio opens a file named *secrets.json* for editing. This file is stored in you user profile on your development machine. The secrets aren't encrypted. It's just a location to store them away from your code. At runtime, ASP.NET Core will look in several locations to find the connection string value, such as *appsettings.json* and your local environment variables. *secrets.json* is one of the locations it checks.
 
-I'll select product as the model class and ContosoPetsContext as the data context class.
+If you're using the .NET CLI, you must first initialize the secret store with `dotnet user-secrets init`. Then you can add the your secrets with `dotnet user-secrets set`.
 
-Visual Studio creates five pages: create, delete, details, edit, and index.
+Now we're going to generate razor pages to support Creating, Reading, Updating, and Deleting products. These operations are referred to as CRUD. The first thing I'm going to do is add the `Microsoft.VisualStudio.Web.CodeGeneration.Design` package to the project. This installs some dependencies for the scaffolding tool.
 
-If we run the application, we can look at the index page which lists the products. Let's look at the code behind this index page.
+Now I'll create a Products folder inside the Pages folder. After that, I'll right-click on the folder, select "Add", and then "New Scaffolded Item..." In the dialog that follows, select Razor Pages using Entity Framework CRUD. Select `Product` as the model class and `ContosoPizzaContext` as the data context class. Click Add.
 
-If we look at the constructor for the page model behind the index page, you'll note that we're injecting ContosoPetsContext into the constructor.
+If you're using the .NET CLI, first install the `dotnet-aspnet-codegenerators` tool as a global tool. Then use the `dotnet aspnet-codegenerators` command to scaffold the pages. I've put the full command in the notes.
 
-ASP.NET Core's dependency injection container takes care of this for us. All we have to do is make our constructor with the right signature.
+The scaffolding creates five pages: Create, Delete, Details, Edit, and Index.
 
-The list of products, rather, is contained on a property on the page model class. The view enumerates over that list of products and for each product lists the name and price.
+I'm going to run the application. Then I'll navigate to the products Index page. This page lists all the products in the table. Let's look at the code.
 
-Let's create a new product. So there's our new product. Let's look at what happened in the code. We'll start with the page model. The OnGET method in the page model returns the empty form, which is a Razor view.
+Looking at the constructor for the page model behind the index page, notice that we're injecting `ContosoPizzaContext` into the constructor. ASP.NET Core's dependency injection container takes care of this for us. All we have to do is make a constructor with the right signature. The products collection is accessed by a property on the page model class.
 
-The Razor view has elements to support name and price. We have label, input, and span. They combine to form the form that we saw earlier including validation that enforces the constraints in our entity model.
+The Razor view enumerates over that list of products and for each product lists the name and price.
 
-When we post the form, the model binder binds the elements on the form to our product property which we then add to our products table and save changes async.
+Let's use the Create page to create a new product.
 
-Let's edit an entity. Know that on this form, the name and price elements were pre-populated with the existing data before we changed it. If we look at the page model for edit on the OnGET, we're querying our database contexts for products that match the ID that was passed in on the URL's query string.
+There's a new product. I'm going to leave the app running, but I'll switch back to my IDE. Let's look at what happened in the code. We'll start with the page model. The `OnGet` method in the page model returns the empty form, which is a Razor view. 
 
-We retrieve that product and present it for the user to edit.
+The Razor view has elements to support name and price. It uses label, input, and span elements to build the form that we saw earlier. This include validation that enforces the constraints in our model classes.
 
-Now, when the user posts the form, the model binder grabs that same product object and attaches it to the database context, finds the existing product, marks it as modified, and save the changes.
+When we post the form, the model binder binds the elements on the form to our product property, which in turn is added to the products `DbSet`. Finally, we call `SaveChangesAsync` to save the changes to the database.
 
-The final operation we're going to look at is the Delete. The delete form is actually similar to the edit form. The very first thing we do on OnGET is we look up the product by ID and display it for the user.
+Let's edit a record. When we visit this page, the name and price elements are pre-populated with existing data. Looking at the page model for `Edit`, the `OnGet` method queries the database for products that match the `Id` that was passed in on the URL's query string. We retrieve that product and present it for the user to edit. 
 
-When the user clicks the "Submit" button, which posts, we find that same product by its ID. We call remove on the products table passing in that entity and we save our changes.
+When the user posts the form, the model binder builds a `Product` object, finds the existing product in the database, marks it as modified, and saves the changes.
 
-In this video, we look at how easy it is to use the ASP.NET Core scaffolding along with Entity Framework to streamline your web development. In the next video, we're going to look at using different database providers with Entity Framework Core.
+The final view we're going to look at is `Delete`. The `Delete` view is similar to the `Edit` view. The first thing `OnGet` does is look up the product by `Id` and display it for the user.
+
+When the user clicks the "Submit" button, we find that same product by its ID. Then we call `Remove` on the `Products` `DbSet`, passing in the entity to delete.
+
+In this video, we saw how easy it is to use ASP.NET Core along with Entity Framework Core to streamline your web development. In the next video, we're going to look at using different database providers with Entity Framework Core.

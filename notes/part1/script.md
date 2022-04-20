@@ -10,17 +10,17 @@ Here's an entity digram describing the entities we're going to persist to our da
 
 Let's dive in!
 
-I'm starting with an empty .NET 6 console project. I'll manage my NuGet packages for the project, and search for Microsoft.EntityFrameworkCore.
+I'm starting with an empty .NET 6 console project. I'll manage my NuGet packages for the project, and search for `Microsoft.EntityFrameworkCore`.
 
-I'll grab the Microsoft.EntityFrameworkCore.SqlServer package and install it to my project. Now that that's installed, I'm also going to install Microsoft.EntityFrameworkCore.Design and Microsoft.EntityFrameworkCore.Tools.
+I'll grab the `Microsoft.EntityFrameworkCore.SqlServer` package and install it to my project. Now that that's installed, I'm also going to install `Microsoft.EntityFrameworkCore.Design` and `Microsoft.EntityFrameworkCore.Tools`.
 
 To get started with Entity Framework Core, we need to build classes describing our entity model. By convention, these are usually stored in a folder called models.
 
-I'm going to create the first entity, probably the simplest one, PRODUCT. We've added an empty class, and for expediency I'm going paste in some code.
+I'm going to create the first entity, probably the simplest one, `Product`. We've added an empty class, and for expediency I'm going paste in some code.
 
-Looking at the product class, the first thing that I want to call out is this first property, ID. In EF Core, ID is a special property name that indicates that this property is to be the primary key in the generated table. It doesn't have to be named ID, it can be the table name followed by ID, or it can be anything we want it to be, in which case we decorate the property with the KEY attribute to indicate that it's a primary key.
+Looking at the `Product` class, the first thing that I want to call out is this first property, `Id`. In EF Core, `Id` is a special property name that indicates that this property is to be the primary key in the generated table. It doesn't have to be named `Id`, it can be the table name followed by `Id`, or it can be anything we want it to be, in which case we decorate the property with the `Key` attribute to indicate that it's a primary key.
 
-The other two properties on this class are NAME and PRICE. We've attributes to define PRICE as a decimal with two points of precision. 
+The other two properties on this class are `Name` and `Price`. We've attributes to define PRICE as a decimal with two points of precision. 
 
 You may be wondering why I've initialized NAME as null with an exclamation point. That's because in .NET 6, all projects enable nullable reference types by default. Without this initialization, the compiler warns us that it can't see where the non-nullable string NAME is initialized. EF Core manages entity intialization for us, so I suppressed the warning by explicitly initializing the property as null with the null-forgiving operator. This lets the compiler know we know what we're doing, so it doesn't need to warn us about this assignment.
 
@@ -40,23 +40,23 @@ Finally, we have another navigation property for a collection of OrderDetails, t
 
 Let's look at OrderDetail. This entity will generate an intersection table to facilitate the many-to-many relationship. It has navigation properties for both order and product. As with the Order class, the OrderId and ProductId represent foreign key relationships and aren't strictly required.
 
-Now we're going to create a database context class. By convention, this typically goes in a folder called "data." I'm going to name my class ContosoPizzaContext.
+Now we're going to create a database context class. By convention, this typically goes in a folder called "data." I'm going to name my class `ContosoPizzaContext`.
 
-ContosoPizzaContext derives from DBContext. Think of DBContext as representing a session with the database. On the DBContext derived class, we have four properties of type DBSet. Each DBSet maps to a table that will be created in the database.
+`ContosoPizzaContext` derives from `DbContext`. Think of `DbContext` as representing a session with the database. On the `DbContext` derived class, we have four properties of type DBSet. Each DBSet maps to a table that will be created in the database.
 
-Finally, we've overridden the OnConfiguring method to include some configuration information. Since we're using the SQL Server package, we have a UseSQLServer extension method available to us that configures the SQL Server database provider. You can find the connection string in the notes for part 1. Set the connection string to the correct connection string for your environment. Hard-coding a connection string like this is a bad practice, and I'm just doing it for demonstration purposes. Always use a secure storage method for your real-world connection strings.
+Finally, we've overridden the OnConfiguring method to include some configuration information. Since we're using the SQL Server package, we have a `UseSQLServer` extension method available to us that configures the SQL Server database provider. You can find the connection string in the notes for part 1. Set the connection string to the correct connection string for your environment. Hard-coding a connection string like this is a bad practice, and I'm just doing it for demonstration purposes. Always use a secure storage method for your real-world connection strings.
 
 So now that we've created our entity model, we're going to create something called a migration. The EF Core migrations feature is a tool that makes it easy to create and evolve our database.
 
-Since I'm using Visual Studio, I'm going to use the Package Manager Console to run the Add-Migration commandlet. I'll name my migration InitialCreate.
+Since I'm using Visual Studio, I'm going to use the Package Manager Console to run the Add-Migration commandlet. I'll name my migration `InitialCreate`.
 
-If you're not using Visual Studio, you can do these same tasks using the .NET CLI. First install the dotnet-ef tool as a global tool. Then use the `dotnet ef migrations add` command to create the InitialCreate migration.
+If you're not using Visual Studio, you can do these same tasks using the .NET CLI. First install the dotnet-ef tool as a global tool. Then use the `dotnet ef migrations add` command to create the `InitialCreate` migration.
 
 Going back to Visual Studio, let's take a look at the generated migration. We should look it over to make sure it's accurate and  it creates the table the way we want it to be created.
 
 Looking at the products table as an example, we can see where it's creating our identity column, our primary key, our Name (which is not nullable), and our price, which is a decimal with two points of precision.
 
-I'm satisfied that the migration is correct, so I'll run the migration with Visual Studio's Update-Database commandlet. The equivilent .NET CLI command is `dotnet ef database update`.
+I'm satisfied that the migration is correct, so I'll run the migration with Visual Studio's `Update-Database` commandlet. The equivilent .NET CLI command is `dotnet ef database update`.
 
 Now let's take a look at the database that was created.
 

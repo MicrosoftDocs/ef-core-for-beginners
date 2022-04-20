@@ -1,5 +1,12 @@
 # Notes and snippets for part 3
 
+## Program.cs snippet
+
+```csharp
+builder.Services.AddDbContext<ContosoPizzaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ContosoPizza")));
+```
+
 ## Connection Strings
 
 ### SQL Server Express LocalDB
@@ -13,7 +20,19 @@ Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Secur
 Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;
 ```
 
-## User Secrets commands
+## User Secrets
+
+### secrets.json
+
+> **Important!**: Be sure any `\` characters are properly escaped for JSON encoding (e.g., `\` in the connection string is `\\` in *secrets.json*)!
+
+```json
+{
+  "ConnectionStrings:ContosoPizza": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;"
+}
+```
+
+### `dotnet` commands
 
 ```dotnet-cli
 dotnet user-secrets init
