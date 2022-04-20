@@ -6,19 +6,27 @@ Before you do anything else, we recommend you watch the bonus video, *How to cod
 
 # Relevant links
 
-## Bonus
+## Bonus Video
 
+- [Video series courseware repository](https://github.com/MicrosoftDocs/ef-core-for-beginners)
 - [Developing inside a container (Visual Studio Code)](https://code.visualstudio.com/docs/remote/containers)
 - [GitHub Codespaces (Visual Studio Code)](https://code.visualstudio.com/docs/remote/codespaces)
+- [Download and install Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
 
 ## Part 1
 
-- [Null safety in C#](https://docs.microsoft.com/learn/modules/csharp-null-safety/)
+- [Video series courseware repository](https://github.com/MicrosoftDocs/ef-core-for-beginners)
+- [Starter project for part 1](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/1-getting-started/ContosoPizza)
+- [Notes and code snippets for part 1](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part1)
 - [Migrations Overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)
-- [Persist and retrieve relational data with Entity Framework Core](https://docs.microsoft.com/learn/modules/persist-data-ef-core/)
+- [Null safety in C# (Microsoft Learn)](https://docs.microsoft.com/learn/modules/csharp-null-safety/)
+- [Persist and retrieve relational data with Entity Framework Core (Microsoft Learn)](https://docs.microsoft.com/learn/modules/persist-data-ef-core/)
 
 ## Part 2
 
+- [Video series courseware repository](https://github.com/MicrosoftDocs/ef-core-for-beginners)
+- [Starter project for part 2](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/2-existing-databases/ContosoPizza)
+- [Notes and code snippets for part 2](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part2)
 - [Reverse Engineering](https://docs.microsoft.com/ef/core/managing-schemas/scaffolding)
 
 ## Part 3
