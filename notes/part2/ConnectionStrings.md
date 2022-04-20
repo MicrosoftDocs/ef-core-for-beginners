@@ -6,10 +6,10 @@
 Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;
 ```
 
-The full Scaffold-DbContext command is:
+The full `Scaffold-DbContext` command is:
 
 ```powershell
-Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;' Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -OutputDir Models
+Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;" Microsoft.EntityFrameworkCore.SqlServer -ContextDir Data -OutputDir Models
 ```
 
 ## If you are using SQL Server in the dev container
@@ -18,7 +18,7 @@ Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPi
 Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;
 ```
 
-The full 
+The full `dotnet ef` command is:
 
 ```dotnet-cli
 dotnet ef dbcontext scaffold "Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models
