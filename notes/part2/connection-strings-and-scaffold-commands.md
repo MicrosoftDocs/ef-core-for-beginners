@@ -18,6 +18,8 @@ Scaffold-DbContext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPi
 Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;
 ```
 
+## `dotnet ef` 
+
 The full `dotnet ef` command is:
 
 ```dotnet-cli
