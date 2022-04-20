@@ -18,7 +18,7 @@ If you're using the .NET CLI, the command is `dotnet ef dbcontext scaffold`. The
 
 Now that the Scaffold is run, we have a complete working entity model.
 
-Looking at the product entity, it should look pretty similar to the one we created in the last video. One difference you'll note, however, is there are no data annotations describing the behavior of these properties, such which might be required or be the primary key.
+Looking at the product entity, it should look pretty similar to the one we created in the last video. One difference you'll note, however, is there are no data annotations describing the behavior of these properties, like the one we used previously for Price.
 
 That's because these behaviors are contained in the OnModelCreating method of the database context. This is another way EF Core lets you control the relationship between your entities and the database.
 
@@ -26,14 +26,14 @@ If we'd like to generate an entity model that looks more like the one we created
 
 Here's what that looks like with the .NET CLI.
 
-This time, the product's entity has data attributes that describe the behavior of the properties. The OnModelCreating method in the database context is much more sparse.
+This time, the product entity has data attributes that describe the behavior of the properties. The OnModelCreating method in the database context is much more sparse.
 
-You might be wondering, what do we do when the database schema changes? There are two strategies. Let's look at the first one.
+You might be wondering, what do we do when the database schema changes? There are two strategies.
 
-The first strategy is a manual approach. This approach requires you to manually edit your entitity model to keep in sync with the database schema. The generated dbcontext and models can thought of as a starting point for ongoing development, similar to scaffolded razor pages in ASP.NET Core.
+The first strategy is a manual approach. This approach requires you to manually edit your entity model to keep in sync with the database schema. The generated dbcontext and models can thought of as a starting point for ongoing development, similar to scaffolded razor pages in ASP.NET Core.
 
-The other strategy is just rescaffolding the entity model whenever the database schema changes. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. I'm going to delete my entity model and re-scaffold. This time, I'm going to generate the models in a subdirectory of the Models directory.
+The other strategy is just rescaffolding the entity model whenever the database schema changes. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. I'm going to delete my entity model and re-scaffold. This time, I'm going to generate the models in a subdirectory of the Models directory, I'll specify the namespaces for the generated classes.
 
-Now I can create partial classes in the Models directory to contain my business logic.
+Now I can create partial classes in the Models directory to contain my business logic. This way, I can regenerate the entity models without disturbing my business logic.
 
 Now that we've seen how Entity Framework Core can work with an existing database, in the next video, I'm going to show you how to use Entity Framework Core with ASP.NET Core to streamline your web development.
