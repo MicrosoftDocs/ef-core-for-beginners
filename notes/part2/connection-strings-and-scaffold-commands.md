@@ -1,4 +1,4 @@
-# Connection strings for Part 1
+# Connection strings and scaffolding commands for Part 2
 
 ## If you are using SQL Server Express LocalDB
 
