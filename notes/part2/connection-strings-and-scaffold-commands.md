@@ -27,7 +27,7 @@ Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa
 The full `dotnet ef` command is:
 
 ```dotnet-cli
-dotnet ef dbcontext scaffold "Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models
+dotnet ef dbcontext scaffold "Connection String Here" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models
 ```
 
 The other parameters you'll need are:
