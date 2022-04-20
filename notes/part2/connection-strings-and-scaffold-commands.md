@@ -22,11 +22,14 @@ Connection string:
 Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;
 ```
 
-## `dotnet ef` 
+## Scaffolding with `dotnet ef` 
 
-The full `dotnet ef` command is:
+To scaffold with `dotnet ef`, run:
 
 ```dotnet-cli
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet ef dbcontext scaffold "Connection String Here" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models
 ```
 

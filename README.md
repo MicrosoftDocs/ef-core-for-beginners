@@ -30,6 +30,9 @@ Before you do anything else, we recommend you watch the bonus video, *How to cod
 - [Reverse Engineering](https://docs.microsoft.com/ef/core/managing-schemas/scaffolding)
 
 ## Part 3
+https://docs.microsoft.com/aspnet/core/security/app-secrets
+https://docs.microsoft.com/aspnet/core/tutorials/razor-pages/sql
+https://aka.ms/ef-core-connection-strings
 
 ## Part 4
 
