@@ -34,17 +34,17 @@
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [1433,5432],
 
-	// "portsAttributes": {
-	// 	"5266": {
-	// 		"label": "RazorPagesPizza HTTP",
-	// 		"onAutoForward": "notify"
-	// 	},
-	// 	"7244": {
-	// 		"label": "RazorPagesPizza HTTPS",
-	// 		"onAutoForward": "notify",
-	// 		"protocol": "https"
-	// 	}
-	// },
+	"portsAttributes": {
+		"5266": {
+			"label": "ContosoPizza HTTP",
+			"onAutoForward": "silent"
+		},
+		"7244": {
+			"label": "ContosoPizza HTTPS",
+			"onAutoForward": "openBrowser",
+			"protocol": "https"
+		}
+	},
 
 	// [Optional] To reuse your local HTTPS dev cert:
 	//
