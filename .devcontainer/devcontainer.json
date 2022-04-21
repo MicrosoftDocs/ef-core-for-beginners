@@ -41,7 +41,7 @@
 		},
 		"7244": {
 			"label": "ContosoPizza HTTPS",
-			"onAutoForward": "openBrowser",
+			"onAutoForward": "openPreview",
 			"protocol": "https"
 		}
 	},
