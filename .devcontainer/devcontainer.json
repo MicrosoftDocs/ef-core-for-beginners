@@ -27,7 +27,6 @@
 		"ms-dotnettools.csharp",
 		"ms-mssql.mssql",
 		"ckolkman.vscode-postgres",
-		"alexcvzz.vscode-sqlite",
 		"vsls-contrib.codetour"
 	],
 
@@ -67,6 +66,8 @@
 
 	// postCreateCommand.sh parameters: $1=SA password, $2=dacpac path, $3=sql script(s) path
 	"postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh 'P@ssw0rd' './.devcontainer/data/' './.devcontainer/scripts/'",
-	"features": {}
+	"features": {
+		"azure-cli": "latest"
+	}
 
 }
