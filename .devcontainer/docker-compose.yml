@@ -43,4 +43,6 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: "P@ssw0rd"
+    network_mode: service:db
+
 
