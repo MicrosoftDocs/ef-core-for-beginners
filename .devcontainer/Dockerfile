@@ -20,3 +20,6 @@ RUN bash ./installSQLtools.sh \
 
 # Add .NET global tools to path
 RUN echo "export PATH=\"$PATH:/root/.dotnet/tools\"" >> ~/.bashrc
+
+# Generate the dev cert
+RUN dotnet dev-certs https

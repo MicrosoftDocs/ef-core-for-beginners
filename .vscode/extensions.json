@@ -3,7 +3,7 @@
 		"ms-dotnettools.csharp",
 		"ms-mssql.mssql",
     "ckolkman.vscode-postgres",
-		"alexcvzz.vscode-sqlite",
+		"ms-vscode.vscode-node-azure-pack",
     "vsls-contrib.codetour"
     ],
 }

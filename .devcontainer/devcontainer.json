@@ -27,23 +27,24 @@
 		"ms-dotnettools.csharp",
 		"ms-mssql.mssql",
 		"ckolkman.vscode-postgres",
+		"ms-vscode.vscode-node-azure-pack",
 		"vsls-contrib.codetour"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [1433,5432],
 
-	"portsAttributes": {
-		"5211": {
-			"label": "RazorPagesPizza HTTP",
-			"onAutoForward": "ignore"
-		},
-		"7192": {
-			"label": "RazorPagesPizza HTTPS",
-			"onAutoForward": "notify",
-			"protocol": "https"
-		}
-	},
+	// "portsAttributes": {
+	// 	"5266": {
+	// 		"label": "RazorPagesPizza HTTP",
+	// 		"onAutoForward": "notify"
+	// 	},
+	// 	"7244": {
+	// 		"label": "RazorPagesPizza HTTPS",
+	// 		"onAutoForward": "notify",
+	// 		"protocol": "https"
+	// 	}
+	// },
 
 	// [Optional] To reuse your local HTTPS dev cert:
 	//
