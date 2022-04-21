@@ -26,11 +26,12 @@
 	"extensions": [
 		"ms-dotnettools.csharp",
 		"ms-mssql.mssql",
+		"ckolkman.vscode-postgres",
 		"vsls-contrib.codetour"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [1433],
+	"forwardPorts": [1433,5432],
 
 	"portsAttributes": {
 		"5211": {
@@ -44,7 +45,7 @@
 		}
 	},
 
-	// [Optional] To reuse of your local HTTPS dev cert:
+	// [Optional] To reuse your local HTTPS dev cert:
 	//
 	// 1. Export it locally using this command:
 	//    * Windows PowerShell:

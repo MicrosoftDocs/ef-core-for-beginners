@@ -7,13 +7,13 @@ namespace ContosoPizza.Models
     {
         public Product()
         {
-            ProductOrders = new HashSet<ProductOrder>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; } = null!;
         public decimal Price { get; set; }
 
-        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

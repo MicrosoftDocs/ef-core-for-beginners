@@ -7,7 +7,7 @@ namespace ContosoPizza.Models
     {
         public Order()
         {
-            ProductOrders = new HashSet<ProductOrder>();
+            OrderDetails = new HashSet<OrderDetail>();
         }
 
         public int Id { get; set; }
@@ -16,6 +16,6 @@ namespace ContosoPizza.Models
         public int CustomerId { get; set; }
 
         public virtual Customer Customer { get; set; } = null!;
-        public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

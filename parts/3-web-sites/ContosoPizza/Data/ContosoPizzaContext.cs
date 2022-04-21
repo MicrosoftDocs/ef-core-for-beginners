@@ -19,8 +19,8 @@ namespace ContosoPizza.Data
 
         public virtual DbSet<Customer> Customers { get; set; } = null!;
         public virtual DbSet<Order> Orders { get; set; } = null!;
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; } = null!;
         public virtual DbSet<Product> Products { get; set; } = null!;
-        public virtual DbSet<ProductOrder> ProductOrders { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -42,24 +42,24 @@ namespace ContosoPizza.Data
                     .HasForeignKey(d => d.CustomerId);
             });
 
-            modelBuilder.Entity<Product>(entity =>
+            modelBuilder.Entity<OrderDetail>(entity =>
             {
-                entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
-            });
+                entity.HasIndex(e => e.OrderId, "IX_OrderDetails_OrderId");
 
-            modelBuilder.Entity<ProductOrder>(entity =>
-            {
-                entity.HasIndex(e => e.OrderId, "IX_ProductOrders_OrderId");
-
-                entity.HasIndex(e => e.ProductId, "IX_ProductOrders_ProductId");
+                entity.HasIndex(e => e.ProductId, "IX_OrderDetails_ProductId");
 
                 entity.HasOne(d => d.Order)
-                    .WithMany(p => p.ProductOrders)
+                    .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.OrderId);
 
                 entity.HasOne(d => d.Product)
-                    .WithMany(p => p.ProductOrders)
+                    .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.ProductId);
+            });
+
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.Property(e => e.Price).HasColumnType("decimal(6, 2)");
             });
 
             OnModelCreatingPartial(modelBuilder);

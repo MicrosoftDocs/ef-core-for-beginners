@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ContosoPizza.Models
 {
-    public partial class ProductOrder
+    public partial class OrderDetail
     {
         public int Id { get; set; }
         public int Quantity { get; set; }

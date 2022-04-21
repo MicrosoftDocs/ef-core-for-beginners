@@ -34,11 +34,13 @@ services:
     environment:
       SA_PASSWORD: P@ssw0rd
       ACCEPT_EULA: Y
-    #volumes:
-    #  - sqlvolume:/var/opt/mssql
 
     # Add "forwardPorts": ["1433"] to **devcontainer.json** to forward MSSQL locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
 
-#volumes:
-  #sqlvolume:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "P@ssw0rd"
+
