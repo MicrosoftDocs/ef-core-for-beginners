@@ -26,7 +26,7 @@ If you're using the .NET CLI, first install the `dotnet-aspnet-codegenerators` t
 
 The scaffolding creates five pages: Create, Delete, Details, Edit, and Index.
 
-I'm going to run the application. Then I'll navigate to the products Index page. This page lists all the products in the table. Let's look at the code.
+I'm going to run the application. Then I'll navigate to the products Index page. This page lists all the products in the table. I'm going to leave the app running, but I'll switch back to my IDE. Let's look at the code.
 
 Looking at the constructor for the page model behind the index page, notice that we're injecting `ContosoPizzaContext` into the constructor. ASP.NET Core's dependency injection container takes care of this for us. All we have to do is make a constructor with the right signature. The products collection is accessed by a property on the page model class.
 
@@ -34,7 +34,7 @@ The Razor view enumerates over that list of products and for each product lists 
 
 Let's use the Create page to create a new product.
 
-There's a new product. I'm going to leave the app running, but I'll switch back to my IDE. Let's look at what happened in the code. We'll start with the page model. The `OnGet` method in the page model returns the empty form, which is a Razor view. 
+There's a new product. Let's look at what happened in the code. We'll start with the page model. The `OnGet` method in the page model returns the empty form, which is a Razor view.
 
 The Razor view has elements to support name and price. It uses label, input, and span elements to build the form that we saw earlier. This include validation that enforces the constraints in our model classes.
 

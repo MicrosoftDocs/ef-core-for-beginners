@@ -14,6 +14,7 @@ builder.Services.AddDbContext<ContosoPizzaContext>(options =>
 ```text
 Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;
 ```
+
 ### Dev Container
 
 ```text
