@@ -1,5 +1,5 @@
 
-#region addproducts
+#region addProducts
 
 using ContosoPizza.Data;
 using ContosoPizza.Models;
@@ -24,7 +24,7 @@ context.SaveChanges();
 
 #endregion
 
-#region displayproducts
+#region displayProducts
 
 var products = context.Products
                     .Where(p => p.Price > 10.00M)
@@ -40,7 +40,7 @@ foreach (Product p in products)
 
 #endregion
 
-#region linqproduct
+#region linqProduct
 
 var products = from product in context.Products
                where product.Price > 10.00M
@@ -49,7 +49,7 @@ var products = from product in context.Products
 
 #endregion
 
-#region updateproduct
+#region updateProduct
 
 var veggieSpecial = context.Products
                        .Where(p => p.Name == "Veggie Special Pizza")
