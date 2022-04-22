@@ -1,8 +1,9 @@
 # Connection strings and notes for Part 5
 
+Make sure you add your connection string to Secrets Manager! See part 3 if you need a refresher.
 
-```
-Customer = await _context.Customers
-    .FromSqlInterpolated($"SELECT * FROM Customers WHERE Id = {CustomerId}")
-    .FirstOrDefaultAsync();
+## SQL query string for `FromSqlInterpolated`
+
+```csharp
+$"SELECT * FROM Customers WHERE Id = {CustomerId}"
 ```

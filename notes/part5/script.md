@@ -20,9 +20,9 @@ Finally, I'll go make sure the navigation properties are marked virtual so that 
 
 Now I've enabled lazy loading, and the table won't be requested from the database until they're actually needed from our code.
 
-> When eager loading one-to-many datasets, EF Core defaults to using LEFT JOINs to get the entire dataset from the database in one query. This can lead to very large datasets when the data from the LEFT side of the JOIN is repeated for each record returned on the RIGHT side. This is known as a cartesian explosion, and can be mitigated by using split queries. Split queries use multiple queries to get the same dataset.
+> When eager loading one-to-many datasets, EF Core defaults to using LEFT JOINs to get the entire dataset from the database in one query. This can lead to very large datasets when the data from the LEFT side of the JOIN is repeated for each record returned on the RIGHT side. This is known as a cartesian explosion, and it can be mitigated by using a feature called split queries. Split queries use multiple queries to get the same dataset.
 
-I'm the Customer Details page needs to use a lot of navigation properties. The debugger output shows the query that's sent to SQL Server. To use a split query, all I need to do is add the `AsSplitQuery` method. Now I'll hot-reload the page. This time, instead of a single SQL query, there are three.
+I'm already running the app the Customer Details page needs to use a lot of navigation properties. The debugger output shows the query that's sent to SQL Server. You can see that it's using one big query. To use a split query, all I need to do is add the `AsSplitQuery` method. Now I'll hot-reload the page. This time, instead of a single SQL query, there are three.
 
 > Sometimes when working with Entity Framework Core, you need to use your own SQL rather than the SQL that it generates for you. Entity Framework Core makes this easy using the `FromSqlRaw` and `FromSqlInterpolated` methods.
 
