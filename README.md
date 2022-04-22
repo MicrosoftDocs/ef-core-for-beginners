@@ -2,11 +2,9 @@
 
 Hi, friend! 👋🏻 You've found the code and other materials to accompany the Entity Framework Core for Beginners video series. We hope you'll find it informative.
 
-Before you do anything else, we recommend you watch the bonus video, *How to code along with these videos*.
+Before you do anything else, we recommend you watch the supplemental video, *How to code along with these videos*.
 
 # Relevant links
-
-
 
 ## Part 1
 
