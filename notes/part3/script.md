@@ -1,10 +1,10 @@
 # Part 3 Script
 
-> Please note: This is the working script used for shooting. The final videos may contain variations and adjustments.
+## Please note: This is the working script used for shooting. The final videos may contain variations and adjustments.
 
-Hi, friends! Welcome back to Entity Framework Core for Beginners.
-
-In this video, I'm going to show you how you can use Entity Framework Core with ASP.NET Core scaffolding to streamline your web development. Let's get to it!
+> Hi, friends! Welcome back to Entity Framework Core for Beginners.
+>
+> In this video, I'm going to show you how you can use Entity Framework Core with ASP.NET Core scaffolding to streamline your web development. Let's get to it!
 
 I've already created an empty ASP.NET Core Razor Pages web app. I used the command I showed you in the last video to scaffold a `DbContext` and models against that same database. Now we're going to scaffold some Razor pages that use `ContosoPizzaContext` to interact with the database.
 
@@ -14,7 +14,7 @@ Now I'm going to visit *Program.cs*. I'll paste in some code to and then I'll ad
 
 The `AddDbContext` extension method registers `ContosoPizzaContext` with ASP.NET Core's dependency injection container. We pass the method a lambda expression that configures EF Core to use the SQL Server database provider using a connection string retrieved from configuration.
 
-In the previous videos, I've mentioned that it's a bad practice to store your connection strings with your code. The .NET Secrets Manager gives us a mechanism to separate our secrets from our code. Let's use the .NET secrets manager to store that connection string.
+> In the previous videos, I've mentioned that it's a bad practice to store your connection strings with your code. The .NET Secrets Manager gives us a mechanism to separate our secrets from our code. Let's use the .NET secrets manager to store that connection string.
 
 I'm right-clicking on the project and selecting **Manage User Secrets**. Visual Studio opens a file named *secrets.json* for editing, and I'll paste in my connection string. This file is stored in you user profile on your development machine. The secrets aren't encrypted. It's just a location to store them away from your code. At runtime, ASP.NET Core will look for the configuration in *appsettings.json* and other locations. *secrets.json* is one of the locations it checks.
 
@@ -52,4 +52,4 @@ The final view we're going to look at is `Delete`. The `Delete` view is similar 
 
 When the user clicks the "Submit" button, we find that same product by its ID. Then we call `Remove` on the `Products` `DbSet`, passing in the entity to delete.
 
-In this video, we saw how easy it is to use ASP.NET Core along with Entity Framework Core to streamline your web development. In the next video, we're going to look at using different database providers with Entity Framework Core.
+> In this video, we saw how easy it is to use ASP.NET Core along with Entity Framework Core to streamline your web development. In the next video, we're going to look at using different database providers with Entity Framework Core.

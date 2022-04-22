@@ -10,6 +10,7 @@ namespace ContosoPizza.Data
     {
         public ContosoPizzaContext()
         {
+ 
         }
 
         public ContosoPizzaContext(DbContextOptions<ContosoPizzaContext> options)
@@ -24,47 +25,16 @@ namespace ContosoPizza.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-                // Keep your connection strings separate from your code!
-                // Secure connection string guidance: https://aka.ms/ef-core-connection-strings
-                // 
-                // optionsBuilder.UseSqlServer("Connection String Here");
-                
-            }
+            // Keep your connection strings separate from your code!
+            // Secure connection string guidance: https://aka.ms/ef-core-connection-strings
+            // 
+            // optionsBuilder.UseSqlServer("Connection String Here");
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Order>(entity =>
-            {
-                entity.HasIndex(e => e.CustomerId, "IX_Orders_CustomerId");
-
-                entity.HasOne(d => d.Customer)
-                    .WithMany(p => p.Orders)
-                    .HasForeignKey(d => d.CustomerId);
-            });
-
-            modelBuilder.Entity<OrderDetail>(entity =>
-            {
-                entity.HasIndex(e => e.OrderId, "IX_OrderDetails_OrderId");
-
-                entity.HasIndex(e => e.ProductId, "IX_OrderDetails_ProductId");
-
-                entity.HasOne(d => d.Order)
-                    .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.OrderId);
-
-                entity.HasOne(d => d.Product)
-                    .WithMany(p => p.OrderDetails)
-                    .HasForeignKey(d => d.ProductId);
-            });
-
-            modelBuilder.Entity<Product>(entity =>
-            {
-                entity.Property(e => e.Price).HasColumnType("decimal(6, 2)");
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
