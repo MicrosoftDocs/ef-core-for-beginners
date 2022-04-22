@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "3-web-sites",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "## Welcome!"
+    }
+  ],
+  "ref": "main"
+}

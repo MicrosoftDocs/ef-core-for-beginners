@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "5-performance-tips",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "## Welcome!"
+    }
+  ],
+  "ref": "main"
+}

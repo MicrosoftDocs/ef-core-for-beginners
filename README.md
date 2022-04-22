@@ -6,12 +6,7 @@ Before you do anything else, we recommend you watch the bonus video, *How to cod
 
 # Relevant links
 
-## Bonus Video
 
-- [Video series courseware repository](https://github.com/MicrosoftDocs/ef-core-for-beginners)
-- [Developing inside a container (Visual Studio Code)](https://code.visualstudio.com/docs/remote/containers)
-- [GitHub Codespaces (Visual Studio Code)](https://code.visualstudio.com/docs/remote/codespaces)
-- [Download and install Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
 
 ## Part 1
 
@@ -37,6 +32,19 @@ https://aka.ms/ef-core-connection-strings
 ## Part 4
 
 ## Part 5
+
+https://docs.microsoft.com/ef/core/querying/tracking#no-tracking-queries)
+https://docs.microsoft.com/ef/core/querying/related-data
+
+
+## Supplemental Video
+
+- CodeTours link
+- SQL Server Express Local DB Link
+- [Video series courseware repository](https://github.com/MicrosoftDocs/ef-core-for-beginners)
+- [Developing inside a container (Visual Studio Code)](https://code.visualstudio.com/docs/remote/containers)
+- [GitHub Codespaces (Visual Studio Code)](https://code.visualstudio.com/docs/remote/codespaces)
+- [Download and install Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
 
 # Contributing
 

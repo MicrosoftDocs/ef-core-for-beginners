@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "2-existing-databases",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "## Welcome!"
+    }
+  ],
+  "ref": "main"
+}

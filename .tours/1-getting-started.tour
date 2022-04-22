@@ -1,0 +1,43 @@
+{
+  "$schema": "https://aka.ms/codetour-schema",
+  "title": "1-getting-started",
+  "steps": [
+    {
+      "title": "Introduction",
+      "description": "## Hi, friends!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video."
+    },
+    {
+      "title": "Create files and folders",
+      "description": "## Create the models files:\n\n1. In the WORKSPACE pane (over there 👈🏻), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started* VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*.\n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the `DbContext` file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the WORKSPACE pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*."
+    },
+    {
+      "title": "Create Customer.cs",
+      "description": ""
+    },
+    {
+      "title": "Create Product.cs",
+      "description": ""
+    },
+    {
+      "title": "Create Order.cs",
+      "description": ""
+    },
+    {
+      "title": "Code OrderDetail.cs",
+      "description": ""
+    },
+    {
+      "title": "Code ContosoPizzaContext.cs",
+      "description": ""
+    },
+    {
+      "title": "Add EF Core packages",
+      "description": "1. Press **Ctrl**+**`` ` ``** to open a new terminal.\n1. Set your location to `parts/1-getting-started/ContosoPizza`.\n1. Install the `dotnet-ef` tool with the following command:\n  \n    <br />\n\n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n\n1. Install the required packages with the following commands:\n  \n    <br />\n    \n    ```bash\n    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4\n    ```\n    <br />"
+    },
+    {
+      "title": "Create the migration",
+      "description": ""
+    }
+  ],
+  "ref": "main"
+}

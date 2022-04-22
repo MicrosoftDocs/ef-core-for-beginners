@@ -1,0 +1,100 @@
+﻿@page
+@model ContosoPizza.Pages.Customers.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Customer</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Phone)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Customer.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Customer.Email)
+        </dd>
+    </dl>
+</div>
+
+@if (Model.Customer.Orders.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Order ID
+                </th>
+                <th>
+                    Order Time
+                </th>
+                <th>
+                    Fulfilled Time
+                </th>
+                <th>
+                    Order Details
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model.Customer.Orders) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderPlaced)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderFulfilled)
+                </td>
+                <td>
+                    <table class="table">
+                    @foreach (var od in item.OrderDetails)
+                    {
+                        <tr>
+                            <td>@od.Quantity qty</td>
+                            <td><a asp-page="../Products/Details" 
+                                asp-route-id="@od.Product.Id" 
+                                asp-route-customerid="@Model.Customer.Id">@od.Product.Name</a></td>
+                            <td align="right">@od.Product.Price</td>
+                        </tr>    
+                    }
+                    </table>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Customer.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

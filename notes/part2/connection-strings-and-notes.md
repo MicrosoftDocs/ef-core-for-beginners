@@ -1,4 +1,4 @@
-# Connection strings and scaffolding commands for Part 2
+# Connection strings and notes for Part 2
 
 ## If you are using SQL Server Express LocalDB on Windows
 

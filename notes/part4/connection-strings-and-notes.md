@@ -14,6 +14,12 @@ Connection string:
 User ID=postgres;Password=P@ssw0rd;Host=localhost;Port=5432;Database=ContosoPizza;
 ```
 
+SELECT:
+
+```sql
+SELECT * FROM "Products"
+```
+
 ## Create a Cosmos DB resource
 
 Azure subscription required. Get one here.
