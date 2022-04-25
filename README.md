@@ -15,9 +15,9 @@ Hi, friend! 👋 You've found the code and other materials to accompany the [Ent
 
 ## Repository structure
 
-The starter project for each video is located in the corresponding folder under in the **parts** folder. For example, the starter project for *Getting Started with Entity Framework Core* (Part 1 of 5) is located in [parts/1-getting-started](parts/1-getting-started/).
+The starter project for each video is located in the corresponding folder under the **parts** folder. For example, the starter project for *Getting Started with Entity Framework Core* (Part 1 of 5) is located in [parts/1-getting-started](parts/1-getting-started/).
 
-The script, code snippets, and connection strings used for each video are located in the **notes** folder, organized by parts. For example, the notes for Part 1 are located in [notes/part1](notes/part1/).
+The script, code snippets, and connection strings used for each video are located in the **notes** folder, organized by parts. For example, the notes for Part 1 are located in [notes/1-getting-started](notes/1-getting-started/).
 
 ## Requirements
 
@@ -56,7 +56,7 @@ You are responsible for determining your own connection information for all of t
 1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) on an accessible SQL Server instance. Use a tool like Azure Data Studio or SQL Server Management Studio.
 1. Open the entire repository folder in Visual Studio Code.
 1. Review the recommended extensions and install them.
-1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
+1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
 
 ### Windows/macOS/Linux with Docker/containers and Visual Studio Code
 
@@ -70,12 +70,12 @@ This scenario requires:
 1. Clone the repository.
 1. Open Visual Studio Code without opening a folder.
 1. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the command palette. Search for and select **Remote Containers-Open Folder in Container...**. Select the entire repository folder.
-1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
+1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
 
 **Alternatively**, this scenario can be completed **in-browser with no local tools** using [GitHub Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/).
 
 1. Just navigate to the [repository](https://github.com/MicrosoftDocs/ef-core-for-beginners), select **Code**, and create a new Codespace using the `main` branch. 
-1. When everything is done loading, find the and launch the CodeTour as described above.
+1. When everything is done loading, locate the CodeTour pane in the explorer, find the CodeTour for the video you're watching, and launch as described above.
 
 ## Relevant links
 
@@ -110,7 +110,7 @@ This scenario requires:
 - [DB Browser for SQLite](https://sqlitebrowser.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://docs.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)
-- [Azure Cosmos DB emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)
+- [Azure Cosmos DB local emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)
 - [Free Azure Account](https://azure.microsoft.com/free/dotnet/)
 
 ### Part 5
