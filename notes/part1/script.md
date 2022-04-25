@@ -1,14 +1,14 @@
 # Part 1 Script
 
-> Please note: This is the working script used for shooting. The final videos may contain variations and adjustments.
+## Please note: This is the working script used for shooting. The final videos may contain variations and adjustments.
 
-Hi friends! I'm Cam Soper, a Content Developer working with .NET here at Microsoft.
-
-In this video, we're going to get started with Entity Framework Core, which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and Postgres, just to name a few.
+> Hi friends! I'm Cam Soper, a Content Developer working with .NET here at Microsoft.
+> 
+> In this video, we're going to get started with Entity Framework Core, which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and Postgres, just to name a few.
 
 Here's an entity digram describing the entities we're going to persist to our database. These entities support a pizza delivery website, ContosoPizza. As you can see, a Customer can place one or more Orders. Each Order contains 1 or more OrderDetails, and each OrderDetail contains a Product and quantity.
 
-Let's dive in!
+> Let's dive in!
 
 I'm starting with an empty .NET 6 console project. I'll manage my NuGet packages for the project, and search for `Microsoft.EntityFrameworkCore`.
 
@@ -106,4 +106,4 @@ Let's run one last time.
 
 As expected, Veggie Special Pizza is now deleted!
 
-That's how easy it is to use Entity Framework Core to persist .NET objects in a database! In this video, we used EF Core migrations to create a new database from our code. In the next video, I'm going to show you how to go the other way, scaffolding code from an existing database.
+> That's how easy it is to use Entity Framework Core to persist .NET objects in a database! In this video, we used EF Core migrations to create a new database from our code. In the next video, I'm going to show you how to go the other way, scaffolding code from an existing database.

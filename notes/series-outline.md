@@ -1,6 +1,6 @@
 # Entity Framework Core video series
 
-> Please note: This is a rough working outline for this series. It was used to create the scripts for each part. The final videos may contain variations and adjustments.
+> Please note: This is a rough working outline for this series. It was used to create the scripts for each part, and was never updated to reflect the final scripts. It's included here for completeness and as an artifact to aid maintainers during future updates to the series.
 
 ## Part 1: Intro to EF Core (15 mins)
 

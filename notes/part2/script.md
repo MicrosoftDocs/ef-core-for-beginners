@@ -1,12 +1,12 @@
 # Part 2 Script
 
-> Please note: This is the working script used for shooting. The final videos may contain variations and adjustments.
+## Please note: This is the working script used for shooting. The final videos may contain variations and adjustments.
 
-Hi, friends! Welcome back to Entity Framework Core for Beginners.
-
-In our previous video, I showed you how easy it is to use Entity Framework Core migrations to create and work with a new database. First, we defined our entity model in code. Then we used migrations to change the database as we made changes to the model. When we use that approach, we're treating the code as the authoritative "source of truth" regarding the shape of our entities.
-
-In this video, I'm going to show you how to use Entity Framework Core to work with an existing database by reverse engineering it. This approach treats the database as the source of truth. 
+> Hi, friends! Welcome back to Entity Framework Core for Beginners.
+> 
+> In our previous video, I showed you how easy it is to use Entity Framework Core migrations to create and work with a new database. First, we defined our entity model in code. Then we used migrations to change the database as we made changes to the model. When we use that approach, we're treating the code as the authoritative "source of truth" regarding the shape of our entities.
+>
+> In this video, I'm going to show you how to use Entity Framework Core to work with an existing database by reverse engineering it. This approach treats the database as the source of truth. 
 
 Looking at Visual Studio, I have a brand new console app that doesn't have any code added to it at all. I've already added the Microsoft.EntityFrameworkCore.SqlServer, .Design, and .Tools NuGet packages.
 
@@ -26,11 +26,11 @@ If we'd like to generate an entity model that looks more like the one we created
 
 Now the product entity has data attributes that describe the behavior of the properties. The OnModelCreating method in the database context is also much more sparse.
 
-You might be wondering, what do we do when the database schema changes? There are two strategies.
-
-The first strategy is a manual approach. This approach requires you to manually edit your entity model to keep in sync with the database schema. The generated dbcontext and models can thought of as a starting point for ongoing development, similar to scaffolded razor pages in ASP.NET Core.
-
-The other strategy is rescaffolding the entity model whenever the database schema changes. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. Let's take a look.
+> You might be wondering, what do we do when the database schema changes? There are two strategies.
+>
+> The first strategy is a manual approach. This approach requires you to manually edit your entity model to keep in sync with the database schema. The generated dbcontext and models can thought of as a starting point for ongoing development, similar to scaffolded razor pages in ASP.NET Core.
+>
+> The other strategy is rescaffolding the entity model whenever the database schema changes. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. Let's take a look.
 
 I'm going to delete my entity model and re-scaffold. This time, I'm going to generate the models in a subdirectory of the Models directory, I'll specify the namespaces for the generated classes.
 
@@ -38,4 +38,4 @@ Now I can create partial classes in the Models directory to contain my business 
 
 Let's paste some code into *Program.cs* so we can see the partial class in action.
 
-Now that we've seen how Entity Framework Core can work with an existing database, in the next video, I'm going to show you how to use Entity Framework Core with ASP.NET Core to streamline your web development.
+> Now that we've seen how Entity Framework Core can work with an existing database, in the next video, I'm going to show you how to use Entity Framework Core with ASP.NET Core to streamline your web development.
