@@ -1,0 +1,39 @@
+name: build
+
+on:
+  push:
+  pull_request:
+    branches: [ main ]
+    paths:
+    - '**.cs'
+    - '**.csproj'
+    - '**.cshtml'
+    - '**.css'
+
+env:
+  DOTNET_VERSION: '6.0.x' # The .NET SDK version to use
+
+jobs:
+  build:
+
+    name: Build All Projects
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+        - 1-getting-started
+        - 2-existing-databases
+        - 3-web-sites
+        - 4-database-providers
+        - 5-performance-tips
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+      
+    - name: Build Step - ${{ matrix.project }}
+      run: dotnet build ./parts/${{ matrix.project }}/ContosoPizza/ContosoPizza.csproj
