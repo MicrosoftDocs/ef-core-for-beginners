@@ -25,6 +25,9 @@ If you want to code along with the videos, we strongly recommend you first watch
 
 The courseware was designed to be followed in one of three scenarios:
 
+- [Windows with Visual Studio](#windows-with-visual-studio)
+- [Windows/macOS/Linux with .NET CLI and Visual Studio Code](#windowsmacoslinux-with-net-cli-and-visual-studio-code)
+- [Windows/macOS/Linux with Docker/containers and Visual Studio Code](#windowsmacoslinux-with-dockercontainers-and-visual-studio-code) -- **recommended scenario, in-browser option available**
 ### Windows with Visual Studio
 
 This is the scenario featured in the video. This scenario requires:
@@ -54,7 +57,7 @@ You are responsible for determining your own connection information for all of t
 1. Review the recommended extensions and install them.
 1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and basically follows the videos step-by-step, (additional information and links).
 
-### Windows/macOS/Linux with Docker/containers and Visual Studio Code (recommended scenario)
+### Windows/macOS/Linux with Docker/containers and Visual Studio Code
 
 This scenario uses open source tooling and supports any operating system. The development container includes ALL prerequisties, including SQL Server, PostgreSQL, .NET SDK, and more. The ContosoPizza SQL Server database is also pre-configured.
 
