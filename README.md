@@ -56,7 +56,7 @@ You are responsible for determining your own connection information for all of t
 1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) on an accessible SQL Server instance. Use a tool like Azure Data Studio or SQL Server Management Studio.
 1. Open the entire repository folder in Visual Studio Code.
 1. Review the recommended extensions and install them.
-1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and basically follows the videos step-by-step (with additional information and links).
+1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
 
 ### Windows/macOS/Linux with Docker/containers and Visual Studio Code
 
@@ -70,7 +70,7 @@ This scenario requires:
 1. Clone the repository.
 1. Open Visual Studio Code without opening a folder.
 1. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the command palette. Search for and select **Remote Containers-Open Folder in Container...**. Select the entire repository folder.
-1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and basically follows the videos step-by-step (with additional information and links).
+1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
 
 **Alternatively**, this scenario can be completed **in-browser with no local tools** using [GitHub Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/).
 
