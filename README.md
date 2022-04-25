@@ -27,7 +27,7 @@ The courseware was designed to be followed in one of three scenarios:
 
 - [Windows with Visual Studio](#windows-with-visual-studio)
 - [Windows/macOS/Linux with .NET CLI and Visual Studio Code](#windowsmacoslinux-with-net-cli-and-visual-studio-code)
-- [Windows/macOS/Linux with Docker/containers and Visual Studio Code](#windowsmacoslinux-with-dockercontainers-and-visual-studio-code) -- **recommended scenario, in-browser option available**
+- [Windows/macOS/Linux with Docker/containers and Visual Studio Code](#windowsmacoslinux-with-dockercontainers-and-visual-studio-code) -- **Recommended scenario, in-browser option available**
 
 ### Windows with Visual Studio
 
@@ -60,7 +60,7 @@ You are responsible for determining your own connection information for all of t
 
 ### Windows/macOS/Linux with Docker/containers and Visual Studio Code
 
-This scenario uses open source tooling and supports any operating system. The development container includes ALL prerequisties, including SQL Server, PostgreSQL, .NET SDK, and more. The ContosoPizza SQL Server database is also pre-configured.
+This scenario uses open source tooling and supports any operating system. The development container includes ALL prerequisties, including SQL Server, PostgreSQL, .NET SDK, and more. The ContosoPizza SQL Server database is also pre-configured. This is the recommended scenario.
 
 This scenario requires:
 
