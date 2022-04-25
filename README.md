@@ -19,7 +19,7 @@ The starter project for each video is located in the corresponding folder under 
 
 The script, code snippets, and connection strings used for each video are located in the **notes** folder, organized by parts. For example, the notes for Part 1 are located in [notes/part1](notes/part1/).
 
-## Software requirements
+## Requirements
 
 If you want to code along with the videos, we strongly recommend you first watch the supplemental video, [*How to code along with these videos*](https://youtu.be/Qh42pe1Ae5U).
 
