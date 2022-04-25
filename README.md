@@ -28,6 +28,7 @@ The courseware was designed to be followed in one of three scenarios:
 - [Windows with Visual Studio](#windows-with-visual-studio)
 - [Windows/macOS/Linux with .NET CLI and Visual Studio Code](#windowsmacoslinux-with-net-cli-and-visual-studio-code)
 - [Windows/macOS/Linux with Docker/containers and Visual Studio Code](#windowsmacoslinux-with-dockercontainers-and-visual-studio-code) -- **recommended scenario, in-browser option available**
+
 ### Windows with Visual Studio
 
 This is the scenario featured in the video. This scenario requires:
@@ -71,7 +72,7 @@ This scenario requires:
 1. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the command palette. Search for and select **Remote Containers-Open Folder in Container...**. Select the entire repository folder.
 1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in Visual Studio. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and basically follows the videos step-by-step (with additional information and links).
 
-**Alternatively**, this scenario can be completed in-browser with no local tools using [GitHub Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/).
+**Alternatively**, this scenario can be completed **in-browser with no local tools** using [GitHub Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/).
 
 1. Just navigate to the [repository](https://github.com/MicrosoftDocs/ef-core-for-beginners), select **Code**, and create a new Codespace using the `main` branch. 
 1. When everything is done loading, find the and launch the CodeTour as described above.
