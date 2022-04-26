@@ -27,7 +27,6 @@
 		"ms-dotnettools.csharp",
 		"ms-mssql.mssql",
 		"ckolkman.vscode-postgres",
-		"ms-vscode.vscode-node-azure-pack",
 		"vsls-contrib.codetour"
 	],
 

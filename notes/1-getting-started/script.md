@@ -6,7 +6,7 @@
 > 
 > In this video, we're going to get started with Entity Framework Core, which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and Postgres, just to name a few.
 
-Here's an entity digram describing the entities we're going to persist to our database. These entities support a pizza delivery website, ContosoPizza. As you can see, a Customer can place one or more Orders. Each Order contains 1 or more OrderDetails, and each OrderDetail contains a Product and quantity.
+Here's an entity diagram describing the entities we're going to persist to our database. These entities support a pizza delivery website, ContosoPizza. As you can see, a Customer can place one or more Orders. Each Order contains 1 or more OrderDetails, and each OrderDetail contains a Product and quantity.
 
 > Let's dive in!
 
@@ -20,9 +20,9 @@ I'm going to create the first entity, probably the simplest one, `Product`. We'v
 
 Looking at the `Product` class, the first thing that I want to call out is this first property, `Id`. In EF Core, `Id` is a special property name that indicates that this property is to be the primary key in the generated table. It doesn't have to be named `Id`, it can be the table name followed by `Id`, or it can be anything we want it to be, in which case we decorate the property with the `Key` attribute to indicate that it's a primary key.
 
-The other two properties on this class are `Name` and `Price`. We've attributes to define PRICE as a decimal with two points of precision. 
+The other two properties on this class are `Name` and `Price`. We've attributes to define `Price` as a decimal with two points of precision. 
 
-You may be wondering why I've initialized NAME as null with an exclamation point. That's because in .NET 6, all projects enable nullable reference types by default. Without this initialization, the compiler warns us that it can't see where the non-nullable string NAME is initialized. EF Core manages entity intialization for us, so I suppressed the warning by explicitly initializing the property as null with the null-forgiving operator. This lets the compiler know we know what we're doing, so it doesn't need to warn us about this assignment.
+You may be wondering why I've initialized `Name` as null with an exclamation point. That's because in .NET 6, all projects enable nullable reference types by default. Without this initialization, the compiler warns us that it can't see where the non-nullable string NAME is initialized. EF Core manages entity intialization for us, so I suppressed the warning by explicitly initializing the property as null with the null-forgiving operator. This lets the compiler know we know what we're doing, so it doesn't need to warn us about this assignment.
 
 If you need to use a nullable reference type in your model, but you don't want nulls stored in the database, you can use the REQUIRED attribute. That's not the case here, so I'll revert this to the way I had it originally.
 

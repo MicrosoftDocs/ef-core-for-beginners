@@ -4,51 +4,43 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## Hi, friends!\n\n## Please note--The code tour is a \"work in progress\" and is not in a usable state. I thought I had more time before the videos were published on YouTube. 😉 It will be complete by 2022-04-28!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video."
+      "description": "## Hi, friends!\n\n## Please note--The code tour is a \"work in progress\" and is not in a usable state. I thought I had more time before the videos were published on YouTube. 😉 It will be complete by 2022-04-28!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video.\n\nIn this tour, we're going to get started with [Entity Framework Core](https://aka.ms/ef-core-101), which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and PostgreSQL, just to name a few.\n\nIf you're running this CodeTour in the dev container, there's nothing else for you to do. If you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)).\n\nClick **Next** below to continue."
+    },
+    {
+      "title": "Review the Entity Diagram",
+      "description": "Here's an entity diagram describing the entities we're going to persist to our database. These entities support a pizza delivery website, ContosoPizza. As you can see, a `Customer` can place one or more `Order`s. Each `Order` contains 1 or more `OrderDetail`s, and each `OrderDetail` contains a `Product` and quantity.\n\n![Entity diagram depicting the objects listed above](.tours/media/1-entity-diagram.png)"
     },
     {
       "title": "Add EF Core packages",
-      "description": "1. Press **Ctrl**+**`` ` ``** to open a new terminal. If there is an existing blocked terminal, you can create a new terminal instance with  **Ctrl**+**Shift**+**`` ` ``** \n1. Set your location to `parts/1-getting-started/ContosoPizza`. Assuming you are currently in the *workspace* or *ef-core-for-beginners* directory, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/1-getting-started/ContosoPizza/\n    ```\n    <br />\n\n1. Install the `dotnet-ef` tool with the following command:\n  \n    <br />\n\n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n\n1. Install the required packages with the following commands:\n  \n    <br />\n    \n    ```bash\n    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4\n    ```\n    <br />\n\n> **Why are we specifying a version for these packages and the `dotnet-ef` tool?** Typically, you probably don't need to specify a version, and the latest release is recommended. In this case, the code for parts 2-5 *already uses* the `6.0.4` packages, so we're specifying those versions here to ensure the `dotnet-ef` tool version matches."
+      "description": "1. Press **Ctrl**+**&#x0060;** to switch to the terminal. You can create new terminal instances with  **Ctrl**+**Shift**+**&#x0060;** if needed.\n1. Set your location to *parts/1-getting-started/ContosoPizza*. Assuming you are starting from the *workspace* or *ef-core-for-beginners* folder, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/1-getting-started/ContosoPizza/\n    ```\n    <br />\n\n1. Install the required packages with the following commands:\n  \n    <br />\n    \n    ```bash\n    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4\n    ```\n    <br />\n\n> **Why are we specifying a version for these packages?** Typically, you probably don't need to specify a version, and the latest release is recommended. In this case, the code for parts 2-5 *already uses* the `6.0.4` packages, and in a later step, you will install the corresponding version of the `dotnet-ef` tool. We're specifying those versions here to ensure the `dotnet-ef` tool version matches."
     },
     {
       "title": "Create files and folders",
-      "description": "## Create the models files:\n\n1. In the WORKSPACE pane (over there 👈), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started*, VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*, after which you will be looking at an empty file. Return to the **CodeTour** tab to continue. \n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the `DbContext` file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the WORKSPACE pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*.\n\n## Double-check file names and paths\n\nYour workspace should resemble the following screenshot. Double-check before proceeding. The CodeTour cannot proceed without correctly named files.\n\n![Screengrab of the author's workspace](.tours/media/1-workspace-with-files.png)"
+      "description": "## Create the models files:\n\n1. In the **WORKSPACE** pane (over there 👈), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started*, VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*, after which you will be looking at an empty file. Close it and return to the **CodeTour** tab to continue.\n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the `DbContext` file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the **WORKSPACE** pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*, after which you will be looking at an empty file. Close it and return to the **CodeTour** tab to continue.\n\n## Double-check file names and paths\n\nYour workspace should resemble the following screenshot. Double-check before proceeding. The CodeTour cannot proceed without correctly named files.\n\n![Screengrab of the author's workspace](.tours/media/1-workspace-with-files.png)\n"
     },
     {
-      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
-      "description": "Select **Insert Code** below to insert the code. Then select **Next**.\n\n```csharp\nnamespace ContosoPizza.Models;\n\npublic class Customer\n{\n    public int Id { get; set; }\n    public string FirstName { get; set; } = null!;\n    public string LastName { get; set; } = null!;\n    public string? Address { get; set; }\n    public string? Phone { get; set; }\n    public ICollection<Order> Orders { get; set; } = null!;\n}\n```",
-      "line": 11,
-      "title": "Customer.cs"
+      "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
+      "description": "Select **Insert Code** below to insert the code for *Product.cs*. Then select **Next**.\n\n```csharp\nusing System.ComponentModel.DataAnnotations;\nusing System.ComponentModel.DataAnnotations.Schema;\n\nnamespace ContosoPizza.Models\n{\n    public class Product\n    {\n        public int Id { get; set; }\n\n        public string Name { get; set; } = null!;\n\n        [Column(TypeName = \"decimal(6, 2)\")]\n        public decimal Price { get; set; }\n    }\n}\n```",
+      "line": 15,
+      "title": "Product.cs"
     },
     {
-      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
-      "description": "`FirstName` and `LastName` are set to `null` with the null-forgiving operator (`!`).",
-      "line": 7,
-      "title": "Customer.cs (continued)"
+      "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
+      "description": "In EF Core, `Id` is a special property name that indicates that this property is to be the primary key in the generated table. It doesn't have to be named `Id`, it can be `<table name>Id`, or it can be anything we want it to be, in which case we decorate the property with the `Key` attribute to indicate that it's a primary key. \n\n- [Learn more about keys](https://docs.microsoft.com/ef/core/modeling/keys).",
+      "line": 8,
+      "title": "Product.cs (continued)"
     },
     {
-      "title": "CustomerStuff",
-      "description": "https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s"
+      "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
+      "description": "We're using Data Annotations to define `Price` as a decimal with two points of precision.\n\n- [Learn more about column data types](https://docs.microsoft.com/ef/core/modeling/entity-properties?tabs=data-annotations%2Cwithout-nrt#column-data-types).",
+      "line": 13,
+      "title": "Product.cs (continued)"
     },
     {
-      "title": "Create Product.cs",
-      "description": ""
-    },
-    {
-      "title": "Create Order.cs",
-      "description": ""
-    },
-    {
-      "title": "Code OrderDetail.cs",
-      "description": ""
-    },
-    {
-      "title": "Code ContosoPizzaContext.cs",
-      "description": ""
-    },
-    {
-      "title": "Create the migration",
-      "description": ""
+      "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
+      "description": "`Name` is a non-nullable string, so the column in the database will not allow nulls. `Name` is initialized as `null!`. That's because in .NET 6, all projects enable nullable reference types by default. Without this initialization, the compiler warns us that it can't see where the non-nullable string `Name` is initialized. EF Core manages entity intialization for us, so I suppressed the warning by explicitly initializing the property as `null` with the null-forgiving operator (`!`). This lets the compiler know we know what we're doing, so it doesn't need to warn us about this assignment.\n\n- [Learn more about null safety in C#](https://docs.microsoft.com/learn/modules/csharp-null-safety).<br />\n- [Learn more about working with nullable reference types in EF Core](https://docs.microsoft.com/ef/core/miscellaneous/nullable-reference-types).",
+      "line": 10,
+      "title": "Product.cs (continued)"
     }
   ],
   "ref": "main"
