@@ -53,7 +53,7 @@ This scenario uses open source tooling and supports any operating system. This s
 You are responsible for determining your own connection information for all of the above.
 
 1. Clone the repository.
-1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) on an accessible SQL Server instance. Use a tool like Azure Data Studio or SQL Server Management Studio.
+1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) on an accessible SQL Server instance. Use a tool like [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio) or SQL Server Management Studio.
 1. Open the entire repository folder in Visual Studio Code.
 1. Review the recommended extensions and install them.
 1. When everything is done loading, find the CodeTour for the video you're watching in the **CodeTours** pane in the **Explorer** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).

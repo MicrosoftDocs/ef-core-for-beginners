@@ -4,15 +4,31 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## Hi, friends!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video."
+      "description": "## Hi, friends!\n\n## Please note--The code tour is a \"work in progress\" and is not in a usable state. I thought I had more time before the videos were published on YouTube. 😉 It will be complete by 2022-04-28!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video."
+    },
+    {
+      "title": "Add EF Core packages",
+      "description": "1. Press **Ctrl**+**`` ` ``** to open a new terminal. If there is an existing blocked terminal, you can create a new terminal instance with  **Ctrl**+**Shift**+**`` ` ``** \n1. Set your location to `parts/1-getting-started/ContosoPizza`. Assuming you are currently in the *workspace* or *ef-core-for-beginners* directory, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/1-getting-started/ContosoPizza/\n    ```\n    <br />\n\n1. Install the `dotnet-ef` tool with the following command:\n  \n    <br />\n\n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n\n1. Install the required packages with the following commands:\n  \n    <br />\n    \n    ```bash\n    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4\n    ```\n    <br />\n\n> **Why are we specifying a version for these packages and the `dotnet-ef` tool?** Typically, you probably don't need to specify a version, and the latest release is recommended. In this case, the code for parts 2-5 *already uses* the `6.0.4` packages, so we're specifying those versions here to ensure the `dotnet-ef` tool version matches."
     },
     {
       "title": "Create files and folders",
-      "description": "## Create the models files:\n\n1. In the WORKSPACE pane (over there 👈), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started*, VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*.\n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the `DbContext` file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the WORKSPACE pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*."
+      "description": "## Create the models files:\n\n1. In the WORKSPACE pane (over there 👈), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started*, VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*, after which you will be looking at an empty file. Return to the **CodeTour** tab to continue. \n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the `DbContext` file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the WORKSPACE pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*.\n\n## Double-check file names and paths\n\nYour workspace should resemble the following screenshot. Double-check before proceeding. The CodeTour cannot proceed without correctly named files.\n\n![Screengrab of the author's workspace](.tours/media/1-workspace-with-files.png)"
     },
     {
-      "title": "Customer.cs",
-      "description": ""
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
+      "description": "Select **Insert Code** below to insert the code. Then select **Next**.\n\n```csharp\nnamespace ContosoPizza.Models;\n\npublic class Customer\n{\n    public int Id { get; set; }\n    public string FirstName { get; set; } = null!;\n    public string LastName { get; set; } = null!;\n    public string? Address { get; set; }\n    public string? Phone { get; set; }\n    public ICollection<Order> Orders { get; set; } = null!;\n}\n```",
+      "line": 11,
+      "title": "Customer.cs"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
+      "description": "`FirstName` and `LastName` are set to `null` with the null-forgiving operator (`!`).",
+      "line": 7,
+      "title": "Customer.cs (continued)"
+    },
+    {
+      "title": "CustomerStuff",
+      "description": "https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s"
     },
     {
       "title": "Create Product.cs",
@@ -29,10 +45,6 @@
     {
       "title": "Code ContosoPizzaContext.cs",
       "description": ""
-    },
-    {
-      "title": "Add EF Core packages",
-      "description": "1. Press **Ctrl**+**`` ` ``** to open a new terminal.\n1. Set your location to `parts/1-getting-started/ContosoPizza`.\n1. Install the `dotnet-ef` tool with the following command:\n  \n    <br />\n\n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n\n1. Install the required packages with the following commands:\n  \n    <br />\n    \n    ```bash\n    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4\n    ```\n    <br />"
     },
     {
       "title": "Create the migration",
