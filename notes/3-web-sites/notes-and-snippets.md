@@ -45,7 +45,7 @@ dotnet user-secrets set "ConnectionStrings:ContosoPizza" "Connection String Here
 ```dotnet-cli
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet aspnet-codegenerator razorpage --model Product --dataContext ContosoPizzaContext --relativeFolderPath Pages/Customers --referenceScriptLibraries
+dotnet aspnet-codegenerator razorpage --model Product --dataContext ContosoPizzaContext --relativeFolderPath Pages/Products --referenceScriptLibraries
 ```
 
 dotnet user-secrets set "ConnectionStrings:ContosoPizza" "Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;"

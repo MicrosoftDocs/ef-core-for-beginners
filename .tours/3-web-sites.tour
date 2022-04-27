@@ -4,7 +4,283 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## My apologies--This CodeTour is a \"work in progress.\" I thought I had more time before the videos were published on YouTube. 😮 This CodeTour will be complete by 2022-04-28!"
+      "description": "## Welcome back!\n\nWelcome to Entity Framework Core for beginners! This is **Part 3**. I'm going to walk you through the video. \n\nIn this tour, I'm going to show you how you can use Entity Framework Core with ASP.NET Core scaffolding to streamline your web development.\n\nIf you're running this CodeTour in the dev container, there's **nothing else for you to do**. The database is pre-installed.\n\nIf you're running in your own environment and you haven't yet completed **Part 2**, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)). **Make sure you've installed the sample database!** It's located at *.devcontainer/data/ContosoPizza.dacpac*. You can use [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)'s Data-tier Application Wizard to deploy the dacpac.\n\nClick **Next** below to continue."
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/ContosoPizza.csproj",
+      "description": "This is an ASP.NET Core web app. I've already added the EF Core NuGet packages.",
+      "line": 22,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 21,
+          "character": 11
+        }
+      },
+      "title": "ContosoPizza.csproj"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "I've already scaffolded my `DbContext` and model classes.",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 1
+        },
+        "end": {
+          "line": 23,
+          "character": 70
+        }
+      },
+      "title": "ContosoPizzaContext.cs"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "Since I used a connection string when I generated this file, it's present in `OnConfiguring`. That's generating warnings at build time. Let's move our connection string out of the code.\n\nFirst, let's get rid of the `OnConfiguring` method. Either delete it manually or select **Insert Code** to replace it with a comment.\n\n```csharp\n// OnConfiguring used to be here.\n```\n",
+      "line": 32,
+      "selection": {
+        "start": {
+          "line": 25,
+          "character": 1
+        },
+        "end": {
+          "line": 32,
+          "character": 10
+        }
+      },
+      "title": "ContosoPizzaContext.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to insert the code that configures the `DbContext` in the dependency injection container. Then select **Next**.\n\n```csharp\nbuilder.Services.AddDbContext<ContosoPizzaContext>(options =>\n    options.UseSqlServer(builder.Configuration.GetConnectionString(\"ContosoPizza\")));\n    \n```",
+      "line": 7,
+      "title": "Program.cs"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to insert the `using` declarations that resolve the code you just added. Then select **Next**.\n\n```csharp\nusing ContosoPizza.Data;\nusing Microsoft.EntityFrameworkCore;\n \n \n```",
+      "line": 4,
+      "title": "Program.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Program.cs",
+      "description": "The `AddDbContext` extension method registers `ContosoPizzaContext` with ASP.NET Core's dependency injection container.",
+      "line": 9,
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 18
+        },
+        "end": {
+          "line": 8,
+          "character": 51
+        }
+      },
+      "title": "Program.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Program.cs",
+      "description": "We pass the method a lambda expression that configures EF Core to use the SQL Server database provider using a connection string retrieved from configuration. The configuration value is named `ConnectionStrings:ContosoPizza`.\n\nAt runtime, ASP.NET Core will look for the configuration in *appsettings.json* and other locations for the `ConnectionStrings:ContosoPizza` configuration value. The Secrets Manager is one of the locations it checks. Let's put the value in Secrets Manager.\n\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal. You can create new terminal instances with  **Ctrl**+**Shift**+**&#x0060;** if the existing terminal is blocked by a running process.\n1. Set your location to *parts/3-web-sites/ContosoPizza*. Assuming you are starting from the *workspace* or *ef-core-for-beginners* folder, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/3-web-sites/ContosoPizza/\n    ```\n    <br />\n    \n    > Alternatively, you can open a new terminal with the desired location by right-clicking on the *parts/3-web-sites/ContosoPizza/* folder and selecting **Open in Integrated Terminal**.\n    >\n    > ![Open in Integrated Terminal screenshot](.tours/media/3-integrated-terminal.png)\n    <br />\n    \n1. Initialize the secrets store and set the configuration value.\n  \n    <br />\n    \n    ```bash\n    dotnet user-secrets init\n    dotnet user-secrets set ConnectionStrings:ContosoPizza \"Connection String Here\"\n    ```\n    <br />\n    \n    Replace the `Connection String Here` text with your SQL Server connection string.\n    \n    ### If you are using SQL Server Express LocalDB\n    \n    `Data Source=(localdb)\\\\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;`\n    \n    ### If you are using SQL Server in the dev container\n    \n    `Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;`\n    \n    <br />\n    \n- [Learn more about securely storing connection strings in EF Core](https://aka.ms/ef-core-connection-strings)\n- [Learn more about Secrets Manager](https://docs.microsoft.com/aspnet/core/security/app-secrets)",
+      "line": 9,
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 52
+        },
+        "end": {
+          "line": 9,
+          "character": 84
+        }
+      },
+      "title": "Program.cs (continued)"
+    },
+    {
+      "title": "Scaffold CRUD Razor pages",
+      "description": "Let's install the required package and tool, and then we can scaffold some Create-Read-Update-Delete (CRUD) Razor pages to interact with our `Product` entities.\n\n1. Save all your changes.\n1. Install the required package with the following command:\n    \n    `dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.0.3`\n    <br />\n\n1. Install the `dotnet-aspnet-codegenerator` tool with the following command:\n    \n    `dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.3`\n    <br />\n\n1. Scaffold the CRUD razor pages:\n    \n    `dotnet aspnet-codegenerator razorpage --model Product --dataContext ContosoPizzaContext --relativeFolderPath Pages/Products --referenceScriptLibraries`\n    <br />\n\n\n> **Why are we specifying versions for these packages?** Typically, you probably don't need to specify a version, and the latest release is recommended. In this case, I want to make sure future revisions of these tools don't conflict with the packages I've already used.\n\nAt this point, you can run the app with `dotnet run` and experiment with the UI. The next few steps of the tour will point out highlights from the scaffolded pages."
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Index.cshtml",
+      "description": "The *Index* view lists all the products in the table.",
+      "line": 46,
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 1
+        },
+        "end": {
+          "line": 46,
+          "character": 2
+        }
+      },
+      "title": "Index.cshtml"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Index.cshtml.cs",
+      "description": "The `ContosoPizzaContext` we registered in the dependency injection container is injected into the constructor.",
+      "line": 21,
+      "selection": {
+        "start": {
+          "line": 18,
+          "character": 1
+        },
+        "end": {
+          "line": 21,
+          "character": 10
+        }
+      },
+      "title": "Index.cshtml.cs"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Index.cshtml.cs",
+      "description": "The collection of `Product` entities is accessed by a property on the page model class.",
+      "line": 23,
+      "selection": {
+        "start": {
+          "line": 23,
+          "character": 9
+        },
+        "end": {
+          "line": 23,
+          "character": 51
+        }
+      },
+      "title": "Index.cshtml.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Index.cshtml.cs",
+      "description": "The `OnGetAsync` method returns the view we saw in *Index.cshtml* that renders the collection of `Product` entities.",
+      "line": 28,
+      "selection": {
+        "start": {
+          "line": 25,
+          "character": 1
+        },
+        "end": {
+          "line": 28,
+          "character": 10
+        }
+      },
+      "title": "Index.cshtml.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Create.cshtml",
+      "description": "This is the form that accepts input for a new `Product`. It uses `label`, `input`, and `span` elements to build the Create form. This includes validation that enforces the constraints in our model classes.",
+      "line": 36,
+      "selection": {
+        "start": {
+          "line": 21,
+          "character": 1
+        },
+        "end": {
+          "line": 36,
+          "character": 16
+        }
+      },
+      "title": "Create.cshtml"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Create.cshtml.cs",
+      "description": "The `OnGet` method returns the empty form.",
+      "line": 26,
+      "selection": {
+        "start": {
+          "line": 23,
+          "character": 1
+        },
+        "end": {
+          "line": 26,
+          "character": 10
+        }
+      },
+      "title": "Create.cshtml.cs"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Create.cshtml.cs",
+      "description": "When the form is posted, the model binder binds the elements on the form to our `Product` property, which in turn is added to the `Products` `DbSet`. Finally, we call `SaveChangesAsync` to save the changes to the database.",
+      "line": 43,
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 1
+        },
+        "end": {
+          "line": 43,
+          "character": 10
+        }
+      },
+      "title": "Create.cshtml.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Edit.cshtml.cs",
+      "description": "The *Edit* view is very similar to *Create*. First, we attempt to locate the record to be edited by querying the database for products that match the `Id` that was passed in on the URL's query string. Then we retrieve that product and present it for the user to edit.",
+      "line": 41,
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 1
+        },
+        "end": {
+          "line": 41,
+          "character": 10
+        }
+      },
+      "title": "Edit.cshtml.cs"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Edit.cshtml.cs",
+      "description": "On `POST`, the model binder builds a `Product` object from the elements on the page, attaches it to the existing entity, marks it as modified, and saves the changes.",
+      "line": 71,
+      "selection": {
+        "start": {
+          "line": 45,
+          "character": 1
+        },
+        "end": {
+          "line": 71,
+          "character": 10
+        }
+      },
+      "title": "Edit.cshtml.cs (continued)"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Delete.cshtml.cs",
+      "description": "The *Delete* view looks up an entity to present to the user.",
+      "line": 40,
+      "selection": {
+        "start": {
+          "line": 26,
+          "character": 1
+        },
+        "end": {
+          "line": 40,
+          "character": 10
+        }
+      },
+      "title": "Delete.cshtml.cs"
+    },
+    {
+      "file": "parts/3-web-sites/ContosoPizza/Pages/Products/Delete.cshtml.cs",
+      "description": "On `POST`, we ensure the record is still there, then we call the `Remove` method to delete it.",
+      "line": 58,
+      "selection": {
+        "start": {
+          "line": 42,
+          "character": 1
+        },
+        "end": {
+          "line": 58,
+          "character": 10
+        }
+      },
+      "title": "Delete.cshtml.cs (continued)"
+    },
+    {
+      "title": "Summary",
+      "description": "In this tour, we saw how easy it is to use ASP.NET Core along with Entity Framework Core to streamline your web development. In the next tour, we're going to look at using different database providers with Entity Framework Core."
     }
   ],
   "ref": "main"
