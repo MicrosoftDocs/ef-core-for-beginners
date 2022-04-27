@@ -30,6 +30,7 @@ var products = context.Products
                     .Where(p => p.Price > 10.00M)
                     .OrderBy(p => p.Name);
 
+
 foreach (Product p in products)
 {
    Console.WriteLine($"Id:    {p.Id}");

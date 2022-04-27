@@ -16,7 +16,7 @@ If you're on a non-Windows environment or you just prefer a different IDE, you c
 
 I used the CodeTour extension in VS Code to make tours that walk you through the code interactively. If you have the CodeTour extension installed, you can launch the CodeTour for each video part by right-clicking and starting the tour you want in the CodeTour pane in the explorer.
 
-My favorite way to experience these videos is with a dev container. If you have a container environment configured, you can load the repository folder using Visual Studio Code's Remote Developement - Containers extension. Visual Studio Code will build a container environment pre-configured with specific versions of the .NET SDK, SQL Server, Postgres, and other tools, as well the pre-existing SQL Server database. You don't even need to install any extensions. There's nothing for you to do except launch the Code Tour.
+My favorite way to experience these videos is with a dev container. If you have a container environment configured, you can load the repository folder using Visual Studio Code's Remote Developement - Containers extension. Visual Studio Code will build a container environment pre-configured with specific versions of the .NET SDK, SQL Server, Postgres, and other tools, as well the pre-existing SQL Server database. You don't even need to install any extensions. There's nothing for you to do except launch the CodeTour.
 
 Finally, if your organization has access to GitHub Codespaces, you can launch the dev container in the cloud without any local tools. Just navigate to the code repository, click the **Code** button, and create a new Codespace using the `main` branch.
 

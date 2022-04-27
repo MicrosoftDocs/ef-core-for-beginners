@@ -4,7 +4,7 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## Hi, friends!\n\n## Please note--The code tour is a \"work in progress\" and is not in a usable state. I thought I had more time before the videos were published on YouTube. 😉 It will be complete by 2022-04-28!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video.\n\nIn this tour, we're going to get started with [Entity Framework Core](https://aka.ms/ef-core-101), which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and PostgreSQL, just to name a few.\n\nIf you're running this CodeTour in the dev container, there's nothing else for you to do. If you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)).\n\nClick **Next** below to continue."
+      "description": "## Hi, friends!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video.\n\nIn this tour, we're going to get started with [Entity Framework Core](https://aka.ms/ef-core-101), which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and PostgreSQL, just to name a few.\n\nIf you're running this CodeTour in the dev container, there's nothing else for you to do. If you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)).\n\nClick **Next** below to continue."
     },
     {
       "title": "Review the Entity Diagram",
@@ -16,7 +16,7 @@
     },
     {
       "title": "Create files and folders",
-      "description": "## Create the models files:\n\n1. In the **WORKSPACE** pane (over there 👈), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started*, VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*, after which you will be looking at an empty file. Close it and return to the **CodeTour** tab to continue.\n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the `DbContext` file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the **WORKSPACE** pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*, after which you will be looking at an empty file. Close it and return to the **CodeTour** tab to continue.\n\n## Double-check file names and paths\n\nYour workspace should resemble the following screenshot. Double-check before proceeding. The CodeTour cannot proceed without correctly named files.\n\n![Screengrab of the author's workspace](.tours/media/1-workspace-with-files.png)\n"
+      "description": "## Create the model files:\n\n1. In the **WORKSPACE** pane (over there 👈), expand **parts**, then expand **1-getting-started**. Note: Since there are no files in *1-getting-started*, VS Code will display the subdirectory *ContosoPizza* on the same line by default.\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder\n1. Select **New Folder**. Name it *Models*.\n1. Right click the *Models* folder and select **New File**. Name it *Customer.cs*, after which you will be looking at an empty file. Close it and return to the **CodeTour** tab to continue.\n1. Repeat the previous step to create the following empty files:\n    - *Order.cs*\n    - *OrderDetail.cs*\n    - *Product.cs*\n\n## Create the *ContosoPizzaContext.cs* file:\n\n1. Right-click on the *parts/1-getting-started/ContosoPizza* folder in the **WORKSPACE** pane.\n1. Select **New Folder**. Name it *Data*.\n1. Right click the *Models* folder and select **New File**. Name it *ContosoPizzaContext.cs*, after which you will be looking at an empty file. Close it and return to the **CodeTour** tab to continue.\n\n## Double-check file names and paths\n\nYour workspace should resemble the following screenshot. Double-check before proceeding. The CodeTour cannot proceed without correctly named files.\n\n![Screengrab of the author's workspace](.tours/media/1-workspace-with-files.png)\n"
     },
     {
       "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
@@ -28,19 +28,482 @@
       "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
       "description": "In EF Core, `Id` is a special property name that indicates that this property is to be the primary key in the generated table. It doesn't have to be named `Id`, it can be `<table name>Id`, or it can be anything we want it to be, in which case we decorate the property with the `Key` attribute to indicate that it's a primary key. \n\n- [Learn more about keys](https://docs.microsoft.com/ef/core/modeling/keys).",
       "line": 8,
-      "title": "Product.cs (continued)"
+      "title": "Product.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 9
+        },
+        "end": {
+          "line": 8,
+          "character": 36
+        }
+      }
     },
     {
       "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
       "description": "We're using Data Annotations to define `Price` as a decimal with two points of precision.\n\n- [Learn more about column data types](https://docs.microsoft.com/ef/core/modeling/entity-properties?tabs=data-annotations%2Cwithout-nrt#column-data-types).",
       "line": 13,
-      "title": "Product.cs (continued)"
+      "title": "Product.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 13,
+          "character": 43
+        }
+      }
     },
     {
       "file": "parts/1-getting-started/ContosoPizza/Models/Product.cs",
-      "description": "`Name` is a non-nullable string, so the column in the database will not allow nulls. `Name` is initialized as `null!`. That's because in .NET 6, all projects enable nullable reference types by default. Without this initialization, the compiler warns us that it can't see where the non-nullable string `Name` is initialized. EF Core manages entity intialization for us, so I suppressed the warning by explicitly initializing the property as `null` with the null-forgiving operator (`!`). This lets the compiler know we know what we're doing, so it doesn't need to warn us about this assignment.\n\n- [Learn more about null safety in C#](https://docs.microsoft.com/learn/modules/csharp-null-safety).<br />\n- [Learn more about working with nullable reference types in EF Core](https://docs.microsoft.com/ef/core/miscellaneous/nullable-reference-types).",
+      "description": "`Name` is a non-nullable string, so the column in the database will not allow nulls. `Name` is initialized as `null!`. That's because in .NET 6, all projects enable nullable reference types by default. Without this initialization, the compiler warns us that it can't see where the non-nullable string `Name` is initialized. EF Core manages entity intialization for us, so I suppressed the warning by explicitly initializing the property as `null` with the null-forgiving operator (`!`). This lets the compiler know we know what we're doing, so it doesn't need to warn us about this assignment.\n\n- [Learn more about null safety in C#](https://docs.microsoft.com/learn/modules/csharp-null-safety)\n- [Required and optional properties in EF Core](https://docs.microsoft.com/ef/core/modeling/entity-properties#required-and-optional-properties)\n- [Working with nullable reference types in EF Core](https://docs.microsoft.com/ef/core/miscellaneous/nullable-reference-types)",
       "line": 10,
-      "title": "Product.cs (continued)"
+      "title": "Product.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 9
+        },
+        "end": {
+          "line": 10,
+          "character": 50
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
+      "description": "Select **Insert Code** below to insert the code for *Customer.cs*. Then select **Next**.\n\n```csharp\nnamespace ContosoPizza.Models;\n\npublic class Customer\n{\n    public int Id { get; set; }\n    public string FirstName { get; set; } = null!;\n    public string LastName { get; set; } = null!;\n    public string? Address { get; set; }\n    public string? Phone { get; set; }\n    public ICollection<Order> Orders { get; set; } = null!;\n}\n```",
+      "line": 11,
+      "title": "Customer.cs"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
+      "description": "`FirstName` and `LastName` are non-nullable strings. The column in the database will not allow nulls. We initialize them as `null!` to avoid compiler warnings.",
+      "line": 7,
+      "title": "Customer.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 7,
+          "character": 50
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
+      "description": "`Address` and `Phone` are nullable strings. The database column will allow nulls.\n\n",
+      "line": 9,
+      "title": "Customer.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 9,
+          "character": 39
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
+      "description": "This is a collection of `Order` objects. This is called a navigation property, and it indicates that a customer may have zero or more orders. This creates a one-to-many relationship in the database that gets generated.\n\n- [Learn more about entity relationships in EF Core](https://docs.microsoft.com/ef/core/modeling/relationships)",
+      "line": 10,
+      "title": "Customer.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 9,
+          "character": 39
+        },
+        "end": {
+          "line": 10,
+          "character": 60
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Order.cs",
+      "description": "Select **Insert Code** below to insert the code for *Order.cs*. Then select **Next**.\n\n```csharp\nnamespace ContosoPizza.Models;\n\npublic class Order\n{\n    public int Id { get; set; }\n    public DateTime OrderPlaced { get; set; }\n    public DateTime? OrderFulfilled { get; set; }\n    public int CustomerId { get; set; }\n\n    public Customer Customer { get; set; } = null!;\n    public ICollection<OrderDetail> OrderDetails { get; set; } = null!;\n}\n```",
+      "line": 12,
+      "title": "Order.cs"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Order.cs",
+      "description": "Each `Order` has exactly one `Customer`.",
+      "line": 10,
+      "title": "Order.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 1
+        },
+        "end": {
+          "line": 10,
+          "character": 52
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/Order.cs",
+      "description": "`CustomerId` is a foreign key that corresponds to the `Id` primary key on `Customer`. If we omitted this property, it would still be implemented for us as a shadow foreign key property.\n\n- [Entity relationships in EF Core](https://docs.microsoft.com/ef/core/modeling/relationships)\n- [Shadow and Indexer properties](https://docs.microsoft.com/en-us/ef/core/modeling/shadow-properties)",
+      "line": 8,
+      "title": "Order.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 40
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/OrderDetail.cs",
+      "description": "Select **Insert Code** below to insert the code for *OrderDetail.cs*. Then select **Next**.\n\n```csharp\nnamespace ContosoPizza.Models;\n\npublic class OrderDetail\n{\n    public int Id { get; set; }\n    public int Quantity { get; set; }\n    public int ProductId { get; set; }\n    public int OrderId { get; set; }\n\n    public Order Order { get; set; } = null!;\n    public Product Product { get; set; } = null!;\n}\n```",
+      "line": 12,
+      "title": "OrderDetail.cs"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Models/OrderDetail.cs",
+      "description": "`OrderDetail` has a single `Order` and a single `Product`. This entity will generate an intersection table to facilitate the many-to-many relationship. As with the `Order` class, the `OrderId` and `ProductId` properties represent foreign key relationships and aren't strictly required.\n\n- [Entity relationships in EF Core](https://docs.microsoft.com/ef/core/modeling/relationships)\n- [Shadow and Indexer properties](https://docs.microsoft.com/en-us/ef/core/modeling/shadow-properties)",
+      "line": 11,
+      "title": "OrderDetail.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 7,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 50
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "Select **Insert Code** below to insert the code for *ContosoPizzaContext.cs*. Then select **Next**.\n\n```csharp\nusing ContosoPizza.Models;\nusing Microsoft.EntityFrameworkCore;\n\nnamespace ContosoPizza.Data;\n\npublic class ContosoPizzaContext : DbContext\n{\n    public DbSet<Customer> Customers { get; set; } = null!;\n    public DbSet<Order> Orders { get; set; } = null!;\n    public DbSet<Product> Products { get; set; } = null!;\n    public DbSet<OrderDetail> OrderDetails { get; set; } = null!;\n\n    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)\n    {\n        optionsBuilder.UseSqlServer(@\"Connection String Here\");\n    }\n}\n```",
+      "line": 17,
+      "title": "ContosoPizzaContext.cs"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "`ContosoPizzaContext` derives from `DbContext`. Think of `DbContext` as representing a session with the database.\n\n- [Learn more about `DbContext` lifetime, configuration, and initialization](https://docs.microsoft.com/ef/core/dbcontext-configuration/)",
+      "line": 6,
+      "title": "ContosoPizzaContext.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 45
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "`DbSet<TEntity>` properties correspond to each table that will be created in the database.\n\n- [Learn more about `DbSet<TEntity>`](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbset-1?view=efcore-6.0)",
+      "line": 11,
+      "title": "ContosoPizzaContext.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 8,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 66
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "The `UseSqlServer` extension method configures the `DbContext` to use SQL Server. Replace the `Connection String Here` text with your SQL Server connection string.\n\n### If you are using SQL Server Express LocalDB\n\n`Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ContosoPizza-Part1;Integrated Security=True;`\n\n### If you are using SQL Server in the dev container\n\n`Data Source=localhost;Database=ContosoPizza-Part1;Integrated Security=false;User ID=sa;Password=P@ssw0rd;`\n\n> **Please separate your connection strings from your code in real-world apps!**\n\n- [Learn more about securely storing connection strings in EF Core](https://aka.ms/ef-core-connection-strings)\n",
+      "line": 21,
+      "title": "ContosoPizzaContext.cs (continued)",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 39
+        },
+        "end": {
+          "line": 15,
+          "character": 61
+        }
+      }
+    },
+    {
+      "title": "Create a migration",
+      "description": "Now that we've created our entity model, we're going to create something called a [migration](https://docs.microsoft.com/ef/core/managing-schemas/migrations/). The EF Core migrations feature is a tool that makes it easy to create and evolve our database.\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Install the `dotnet-ef` tool as a global tool:\n  \n    <br />\n    \n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n    \n    > As a reminder, we're specifying version `6.0.4` here to ensure the `dotnet-ef` tool version matches the projects in parts 2-5.\n    <br />\n\n1. Use the `dotnet-ef` tool to create the `InitialCreate` migration:\n  \n    <br />\n    \n    ```bash\n    dotnet ef migrations add InitialCreate\n    ```\n    <br />\n\n- [Migrations overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)"
+    },
+    {
+      "title": "Examine InitialCreate migration",
+      "description": "The migration you ran created a *Migrations* folder with some files. The migration is named *&lt;timestamp&gt;_InitialCreate.cs*. \n\n> You might need to refresh your workspace explorer pane to view the new folder/files.\n>\n> ![The workspace toolbar with the refresh button highlighted](.tours/media/1-refresh-explorer.png)\n"
+    },
+    {
+      "title": "Run the migration",
+      "description": "Run the migration with the following command:\n\n`dotnet ef database update`"
+    },
+    {
+      "title": "Examine the database",
+      "description": "Go to the SQL Server extension tab.\n\n![SQL Server tab](.tours/media/1-sql-server.png)\n\n1. Expand the existing connection (or add one pointing to your SQL environment).\n1. Expand the *ContosoPizza-Part1* database.\n1. Expand the *Tables* node to view the tables in the database.\n1. Expand each table and its columns node to view the schema.\n\nWhoops, we should have included a column for Email in the `Customers` table! Let's do that now."
+    },
+    {
+      "file": "notes/1-getting-started/Customer.cs",
+      "description": "Select **Insert Code** below to insert the code for the `Email` property. Then select Next.\n\n```csharp\npublic string? Email { get; set; }\n```",
+      "line": 10,
+      "title": "Add Email property"
+    },
+    {
+      "title": "Use a migration to update the database schema",
+      "description": "Now that we've modified the `Customer` model, we'll create and run another migration.\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Use the `dotnet-ef` tool to create the `AddEmail` migration and apply it to the database:\n  \n    <br />\n    \n    ```bash\n    dotnet ef migrations add AddEmail\n    dotnet ef database update\n    ```\n    <br />\n\n1. Return to the SQL Server extension and verify the change. You may need to right-click on the `Customers` table and refresh.\n\n- [Migrations overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to insert the code for *Program.cs*. Then select **Next**.\n\n```csharp\nusing ContosoPizza.Data;\nusing ContosoPizza.Models;\n\nusing ContosoPizzaContext context = new ContosoPizzaContext();\n\nProduct veggieSpecial = new Product()\n{\n    Name = \"Veggie Special Pizza\",\n    Price = 9.99M\n};\ncontext.Products.Add(veggieSpecial);\n\nProduct deluxeMeat = new Product()\n{\n    Name = \"Deluxe Meat Pizza\",\n    Price = 12.99M\n};\ncontext.Add(deluxeMeat);\n\ncontext.SaveChanges();\n```",
+      "line": 41,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 3,
+          "character": 1
+        }
+      },
+      "title": "Create entities"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "We start by creating an instance of `ContosoPizzaContext`. This `using` declaration ensures that the `ContosoPizzaContext` object is disposed of properly when we're done using it.\n\n- [DbContext Lifetime, Configuration, and Initialization](https://docs.microsoft.com/ef/core/dbcontext-configuration/)\n- [`using` statement](https://docs.microsoft.com/dotnet/csharp/language-reference/keywords/using-statement)",
+      "line": 4,
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 4,
+          "character": 63
+        }
+      },
+      "title": "Create (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Here we create a new `Product` named \"Veggie Special Pizza\". It gets added to the `DbSet<Product>` named `Products`.",
+      "line": 11,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 11,
+          "character": 37
+        }
+      },
+      "title": "Create (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Here we create a new `Product` named \"Deluxe Meat Pizza\". It gets added to the `ContosoPizzaContext`. EF Core can infer that since the entity is a `Product`, it needs to go into the `Products` table.",
+      "line": 18,
+      "title": "Create (continued)",
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 1
+        },
+        "end": {
+          "line": 18,
+          "character": 25
+        }
+      }
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "`SaveChanges()` persists the snapshot changes in the database.",
+      "line": 20,
+      "title": "Create (continued)",
+      "selection": {
+        "start": {
+          "line": 20,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 23
+        }
+      }
+    },
+    {
+      "title": "Run the app and examine the database",
+      "description": "Let's run the app and see what happens.\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Run the app:\n  \n    <br />\n    \n    ```bash\n    dotnet run\n    ```\n    <br />\n\n1. Go back to the SQL Server extension. Right-click on the `Products` table and select **SELECT TOP 1000**.\n    \n    A new tab opens with the table contents.\n\n    ![Products table contents](.tours/media/1-products-table.png)\n    \n\n"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to replace the selected code. Then select **Next**.\n\n```csharp\nvar products = context.Products\n                    .Where(p => p.Price > 10.00M)\n                    .OrderBy(p => p.Name);\n\n\nforeach (Product p in products)\n{\n   Console.WriteLine($\"Id:    {p.Id}\");\n   Console.WriteLine($\"Name:  {p.Name}\");\n   Console.WriteLine($\"Price: {p.Price}\");\n   Console.WriteLine(new string('-', 20));\n}\n```",
+      "line": 44,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 23
+        }
+      },
+      "title": "Read and query entities"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 43
+        }
+      },
+      "description": "This is an example of a fluent API. The `Where` and `OrderBy` extension methods are chained together to compose a query.\n\n- [Learn more about querying data](https://docs.microsoft.com/ef/core/querying/)",
+      "title": "Read (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Here we write the results of the query to the console.",
+      "line": 17,
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 17,
+          "character": 2
+        }
+      },
+      "title": "Read (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to replace the selected code. Then select **Next**.\n\n```csharp\nvar products = from product in context.Products\n               where product.Price > 10.00M\n               orderby product.Name\n               select product;\n```",
+      "line": 11,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 43
+        }
+      },
+      "title": "Read (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "This query is built using LINQ syntax. This query is functionally equivilent to the one we created using a fluent API, but this syntax is more similar to SQL.\n\n- [Learn more about LINQ](https://docs.microsoft.com/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations)",
+      "line": 9,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 9,
+          "character": 31
+        }
+      },
+      "title": "Read (continued)"
+    },
+    {
+      "title": "Run the app again",
+      "description": "Let's run the app again!\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Run the app:\n  \n    <br />\n    \n    ```bash\n    dotnet run\n    ```\n    <br />\n\nThe console output displays a single record:\n\n```text\nId:    2\nName:  Deluxe Meat Pizza\nPrice: 12.99\n--------------------\n```"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to insert the \"update\" code. Then select **Next**.\n```csharp\n\nvar veggieSpecial = context.Products\n                       .Where(p => p.Name == \"Veggie Special Pizza\")\n                       .FirstOrDefault();\n\nif (veggieSpecial is Product)\n{\n    veggieSpecial.Price = 10.99M;\n}\n\ncontext.SaveChanges();\n\n```",
+      "line": 16,
+      "title": "Update an entity"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "First we query the `Products` table to find the `Product` named \"Veggie Special Pizza\". We take the first result. If there are no results, we get the `default` value, which is `null`.",
+      "line": 8,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 42
+        }
+      },
+      "title": "Update (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "We check to ensure `veggieSpecial` is a `Product`. We could have also used `if (veggieSpecial is not null)`. Then we update the `Price`.",
+      "line": 13,
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 1
+        },
+        "end": {
+          "line": 13,
+          "character": 2
+        }
+      },
+      "title": "Update (continued)"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "`SaveChanges()` takes the changes to the in-memory snapshot and persists them in the database.",
+      "line": 15,
+      "title": "Update (continued)"
+    },
+    {
+      "title": "Run the app again",
+      "description": "Let's run the app again!\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Run the app:\n  \n    <br />\n    \n    ```bash\n    dotnet run\n    ```\n    <br />\n\nThe console output now displays two records:\n\n```text\nId:    2\nName:  Deluxe Meat Pizza\nPrice: 12.99\n--------------------\nId:    1\nName:  Veggie Special Pizza\nPrice: 10.99\n--------------------\n```"
+    },
+    {
+      "file": "parts/1-getting-started/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to replace the selected code.\n\n```csharp\ncontext.Remove(veggieSpecial);\n```\n\nNow the code will remove the `Product` named \"Veggie Special Pizza\".",
+      "line": 12,
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 5
+        },
+        "end": {
+          "line": 12,
+          "character": 34
+        }
+      },
+      "title": "Delete an entity"
+    },
+    {
+      "title": "Run the app one last time",
+      "description": "One more time!!!\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Run the app:\n  \n    <br />\n    \n    ```bash\n    dotnet run\n    ```\n    <br />\n\nThe console output now displays one record:\n\n```text\nId:    2\nName:  Deluxe Meat Pizza\nPrice: 12.99\n--------------------\n```"
+    },
+    {
+      "title": "Summary",
+      "description": "That's how easy it is to use Entity Framework Core to persist .NET objects in a database! In this walkthrough, we used EF Core migrations to create a new database from our code. In the next walkthrough, I'm going to show you how to go the other way, scaffolding code from an existing database."
     }
   ],
   "ref": "main"
