@@ -107,6 +107,7 @@ This scenario requires:
 
 - [Starter project](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/4-database-providers/ContosoPizza)
 - [Notes and code snippets](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part4)
+- [Full list of database providers](https://docs.microsoft.com/ef/core/providers/).
 - [DB Browser for SQLite](https://sqlitebrowser.org/)
 - [PostgreSQL](https://www.postgresql.org/)
 - [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://docs.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)

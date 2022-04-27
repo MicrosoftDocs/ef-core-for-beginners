@@ -20,12 +20,10 @@ SELECT:
 SELECT * FROM "Products"
 ```
 
-## Create a Cosmos DB resource
+## Azure Cosmos DB
 
-Azure subscription required. Get one here.
+You can use an actual Cosmos DB account in the cloud, or you can use the local emulator.
 
-```az-cli
-az login
-az group 
-az cosmos
-```
+- [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://docs.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)
+- [Azure Cosmos DB local emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)
+- [Free Azure Account](https://azure.microsoft.com/free/dotnet/)
