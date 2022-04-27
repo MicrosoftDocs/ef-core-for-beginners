@@ -4,7 +4,7 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## Hi, friends!\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video.\n\nIn this tour, we're going to get started with [Entity Framework Core](https://aka.ms/ef-core-101), which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and PostgreSQL, just to name a few.\n\nIf you're running this CodeTour in the dev container, there's nothing else for you to do. If you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)).\n\nClick **Next** below to continue."
+      "description": "## Hi, friends! 👋\n\nWelcome to Entity Framework Core for beginners! This is **Part 1**. I'm going to walk you through this video.\n\nIn this tour, we're going to get started with [Entity Framework Core](https://aka.ms/ef-core-101), which is a toolset that makes it easy to store your .NET objects in a variety of databases without writing much (or any) database code. EF Core allows you to use a variety of databases, such as SQL Server, SQLite, Cosmos DB, and PostgreSQL, just to name a few.\n\nIf you're running this CodeTour in the dev container, there's nothing else for you to do. If you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)).\n\nClick **Next** below to continue."
     },
     {
       "title": "Review the Entity Diagram",
@@ -13,6 +13,14 @@
     {
       "title": "Add EF Core packages",
       "description": "1. Press **Ctrl**+**&#x0060;** to switch to the terminal. You can create new terminal instances with  **Ctrl**+**Shift**+**&#x0060;** if the existing terminal is blocked by a running process.\n1. Set your location to *parts/1-getting-started/ContosoPizza*. Assuming you are starting from the *workspace* or *ef-core-for-beginners* folder, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/1-getting-started/ContosoPizza/\n    ```\n    <br />\n\n1. Install the required packages with the following commands:\n  \n    <br />\n    \n    ```bash\n    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.4\n    dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.4\n    ```\n    <br />\n\n> **Why are we specifying a version for these packages?** Typically, you probably don't need to specify a version, and the latest release is recommended. In this case, the code for parts 2-5 *already uses* the `6.0.4` packages, and in a later step, you will install the corresponding version of the `dotnet-ef` tool. We're specifying those versions here to ensure the `dotnet-ef` tool version matches."
+    },
+    {
+      "title": "Scaffold a DbContext and entity models",
+      "description": ""
+    },
+    {
+      "title": "Scaffold a DbContext and entity models",
+      "description": ""
     },
     {
       "title": "Create files and folders",
@@ -437,7 +445,17 @@
       "file": "parts/1-getting-started/ContosoPizza/Program.cs",
       "description": "Select **Insert Code** below to insert the \"update\" code. Then select **Next**.\n```csharp\n\nvar veggieSpecial = context.Products\n                       .Where(p => p.Name == \"Veggie Special Pizza\")\n                       .FirstOrDefault();\n\nif (veggieSpecial is Product)\n{\n    veggieSpecial.Price = 10.99M;\n}\n\ncontext.SaveChanges();\n\n```",
       "line": 16,
-      "title": "Update an entity"
+      "title": "Update an entity",
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 3,
+          "character": 1
+        }
+      }
     },
     {
       "file": "parts/1-getting-started/ContosoPizza/Program.cs",
