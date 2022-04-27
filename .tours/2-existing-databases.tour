@@ -4,7 +4,191 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## My apologies--This CodeTour is a \"work in progress.\" I thought I had more time before the videos were published on YouTube. 😮 This CodeTour will be complete by 2022-04-28!"
+      "description": "## Welcome back!\n\nWelcome to Entity Framework Core for beginners! This is **Part 2**. I'm going to walk you through the video.\n\nIn our previous video, I showed you how easy it is to use Entity Framework Core migrations to create and work with a new database. First, we defined our entity model in code. Then we used migrations to change the database as we made changes to the model. When we use that approach, we're treating the code as the authoritative \"source of truth\" regarding the shape of our entities.\n\nIn this video, I'm going to show you how to use Entity Framework Core to work with an existing database by reverse engineering it. This approach treats the database as the source of truth.\n\nIf you're running this CodeTour in the dev container, there's **nothing else for you to do**. The database is pre-installed.\n\nIf you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)). **Make sure you've installed the sample database!** It's located at *.devcontainer/data/ContosoPizza.dacpac*. You can use [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)'s Data-tier Application Wizard to deploy the dacpac.\n\nClick **Next** below to continue."
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/ContosoPizza.csproj",
+      "description": "The `Microsoft.EntityFrameworkCore.SqlServer`, `.Tools`, and `.Design` packages are already installed.\n\nIf you completed **Part 1**, you should already have the `dotnet-ef` tool installed. If you need it, install it as follows:\n\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Install the `dotnet-ef` tool as a global tool:\n  \n    <br />\n    \n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n    \n    > We're specifying version `6.0.4` here to ensure the `dotnet-ef` tool version matches the dependencies in the *.csproj*.\n    <br />\n\n\n",
+      "line": 19,
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 24
+        }
+      },
+      "title": "ContosoPizza.csproj"
+    },
+    {
+      "title": "Inspect the database",
+      "description": "If you want, take a few minutes to familarize yourself with the `ContosoPizza` database. First visit the SQL Server extension by pressing **Ctrl**+**Alt**+**D** or clicking this button:\n\n![SQL Server extension](.tours/media/1-sql-server.png)\n\nIf you're in the dev container, the **mssql-container** connection is pre-configured. If you're bringing your own SQL Server, you may need to configure the connection. \n\nExpand the connection node, then expand **Databases** > **ContosoPizza** > **Tables**. Right-click on each of the tables and select **Select Top 1000** to view the data.\n"
+    },
+    {
+      "title": "Scaffold a DbContext and entity models",
+      "description": "1. Press **Ctrl**+**&#x0060;** to switch to the terminal. You can create new terminal instances with  **Ctrl**+**Shift**+**&#x0060;** if the existing terminal is blocked by a running process.\n1. Set your location to *parts/2-existing-databases/ContosoPizza*. Assuming you are starting from the *workspace* or *ef-core-for-beginners* folder, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/2-existing-databases/ContosoPizza/\n    ```\n    <br />\n    \n    > Alternatively, you can open a new terminal with the desired location by right-clicking on the *parts/2-existing-databases/ContosoPizza/* folder and selecting **Open in Integrated Terminal**.\n    >\n    > ![Open in Integrated Terminal screenshot](.tours/media/2-integrated-terminal.png)\n    <br />\n    \n1. Run the scaffolding command:\n  \n    <br />\n    \n    ```bash\n    dotnet ef dbcontext scaffold \"Connection String Here\" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models\n    ```\n    <br />\n    \n    Replace the `Connection String Here` text with your SQL Server connection string.\n    \n    ### If you are using SQL Server Express LocalDB\n    \n    `Data Source=(localdb)\\\\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;`\n    \n    ### If you are using SQL Server in the dev container\n    \n    `Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;`\n    \n    <br />\n    \n    > **Please separate your connection strings from your code in real-world apps!**\n    > \n    > [Learn more about securely storing connection strings in EF Core](https://aka.ms/ef-core-connection-strings)"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Models/Product.cs",
+      "description": "This is the `Product` class that was generated by the tool.",
+      "line": 18,
+      "selection": {
+        "start": {
+          "line": 6,
+          "character": 1
+        },
+        "end": {
+          "line": 19,
+          "character": 1
+        }
+      },
+      "title": "Product.cs"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Models/Product.cs",
+      "description": "There's no annotation on `Price` like there was in **Part 1**. How does EF Core know represent that this should have 2 points of precision?",
+      "line": 15,
+      "title": "Product.cs (continued)"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "The `OnModelCreating` method describes the relationships between entities and details about how properties equate to columns.",
+      "line": 66,
+      "selection": {
+        "start": {
+          "line": 34,
+          "character": 1
+        },
+        "end": {
+          "line": 66,
+          "character": 10
+        }
+      },
+      "title": "ContosoPizzaContext.cs"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "Here's where the `Price` column is defined as having 2 points of precision.",
+      "line": 63,
+      "selection": {
+        "start": {
+          "line": 60,
+          "character": 1
+        },
+        "end": {
+          "line": 63,
+          "character": 16
+        }
+      },
+      "title": "ContosoPizzaContext.cs (continued)"
+    },
+    {
+      "title": "Scaffold a DbContext and entity models with Data Annotations",
+      "description": "If you need to generate an entity model that looks more like the one we created in **Part 1**, we can do that too.\n\nLet's run the scaffolding command again with the `--data-annotations` flag. The `--force` flag causes the existing scaffolded files to be overwritten.\n\n`dotnet ef dbcontext scaffold \"Connection String Here\" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models --data-annotations --force`\n\nReplace the `Connection String Here` text with your SQL Server connection string."
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Models/Product.cs",
+      "description": "Now there are data annotations in the model classes.",
+      "line": 20,
+      "selection": {
+        "start": {
+          "line": 19,
+          "character": 1
+        },
+        "end": {
+          "line": 20,
+          "character": 43
+        }
+      },
+      "title": "Product.cs"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "`OnModelCreating` doesn't define any of the model behaviors when we scaffold with data annotations.",
+      "line": 37,
+      "selection": {
+        "start": {
+          "line": 34,
+          "character": 1
+        },
+        "end": {
+          "line": 37,
+          "character": 10
+        }
+      },
+      "title": "ContosoPIzzaContext.cs"
+    },
+    {
+      "title": "Keeping your models in sync with the database",
+      "description": "You might be wondering, what do we do when the database schema changes? There are two strategies.\n\nThe first strategy is a manual approach. This approach requires you to manually edit your entity model to keep in sync with the database schema. The generated `DbContext` and models can thought of as a starting point for ongoing development, similar to scaffolded Razor pages in ASP.NET Core.\n\nThe other strategy is rescaffolding the entity model whenever the database schema changes. Using this approach, it's important to use partial classes or extension methods to keep business logic separate from scaffolded entities. This ensures that business logic doesn't get overwritten if you re-scaffold the entities. Let's try that approach next.\n\n- [Learn more about partial classes in C#](https://docs.microsoft.com/dotnet/csharp/programming-guide/classes-and-structs/partial-classes-and-methods)"
+    },
+    {
+      "title": "Scaffold the DbContext again to separate business logic",
+      "description": "1. Right-click the *parts/2-existing-databases/ContosoPizza/Data* folder and select **Delete Permanently**.\n1. Repeat the previous step for *parts/2-existing-databases/ContosoPizza/Models*.\n1. Run the scaffold command again. This time, we specify a subdirectory of *Models* for the model classes. We also explicitly set the namespace.\n    \n    `dotnet ef dbcontext scaffold \"Connection String Here\" Microsoft.EntityFrameworkCore.SqlServer --context-dir Data --output-dir Models/Generated --context-namespace ContosoPizza.Data --namespace ContosoPizza.Models`\n    \n    Replace the `Connection String Here` text with your SQL Server connection string.\n    \n    \n    \n"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Models/Generated/Product.cs",
+      "description": "This is a partial class for `ContosoPizza.Models.Product`, even though in lives in the physical *Models/Generated* folder.",
+      "line": 6,
+      "selection": {
+        "start": {
+          "line": 4,
+          "character": 1
+        },
+        "end": {
+          "line": 6,
+          "character": 33
+        }
+      },
+      "title": "Product.cs"
+    },
+    {
+      "title": "Create the partial class for business logic",
+      "description": "Let's create another partial class for the business logic. \n\nRight-click on *parts/2-existing-databases/ContosoPizza/Models* in the workspace explorer and select **New File** name it *Customer.cs*. When the empty file opens, return to this tab and select **Next** to continue.\n\n> **Be sure you are right-clicking on the *Models* folder!**. By default, Visual Studio Code displays the *Generated* subfolder on the same line as *Models* if there are no files in *Models*.\n>\n> ![Screengrab of the Models and Generated folders in the author's workspace](.tours/media/2-models-new-file.png)"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Models/Customer.cs",
+      "description": "Select **Insert Code** below to insert the code for the `Customer` partial class. Then select **Next**.\n\n```csharp\nnamespace ContosoPizza.Models;\n\npublic partial class Customer\n{\n    public string FirstLast\n    {\n        get => $\"{FirstName} {LastName}\";\n    }\n}\n```",
+      "line": 9,
+      "title": "Customer.cs"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Models/Customer.cs",
+      "description": "The property `FirstLast` uses the `FirstName` and `LastName` properties from the generated partial model class to generate a string.",
+      "line": 8,
+      "selection": {
+        "start": {
+          "line": 5,
+          "character": 1
+        },
+        "end": {
+          "line": 8,
+          "character": 6
+        }
+      },
+      "title": "Customer.cs (partial)"
+    },
+    {
+      "file": "parts/2-existing-databases/ContosoPizza/Program.cs",
+      "description": "Select **Insert Code** below to replace the code in *Program.cs*.\n\n```csharp\nusing ContosoPizza.Data;\nusing ContosoPizza.Models;\n\nusing ContosoPizzaContext context = new ContosoPizzaContext();\n\nforeach (Customer c in context.Customers)\n{\n    Console.WriteLine($\"Name: {c.FirstLast}\");\n}\n```\n\nThe code above uses the property on the partial `Customer` class we created. We could now re-scaffold the model classes and the `FirstLast` property would be preserved.\n\nSave all your changes and run the code with `dotnet run` to see it in action.\n\nYou should receive the following console output:\n\n> ```\n> Name: Patrick Hunt\n> Name: Elsa York\n> ```",
+      "line": 11,
+      "selection": {
+        "start": {
+          "line": 1,
+          "character": 1
+        },
+        "end": {
+          "line": 3,
+          "character": 1
+        }
+      },
+      "title": "Program.cs"
+    },
+    {
+      "title": "Summary",
+      "description": "Now we've seen how Entity Framework Core can work with an existing database! In the next walkthrough, I'm going to show you how to use Entity Framework Core with ASP.NET Core to streamline your web development."
     }
   ],
   "ref": "main"

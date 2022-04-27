@@ -18,7 +18,7 @@ If you're using the .NET CLI, the command is `dotnet ef dbcontext scaffold`. The
 
 Now that the Scaffold is run, we have a complete working entity model.
 
-Looking at the product entity, it should look pretty similar to the one we created in the last video. One difference you'll note, however, is there are no data annotations describing the behavior of these properties, like the one we used previously for Price.
+Looking at the product entity, it should look pretty similar to the one we created in the last video. One difference you'll note, however, is there are no data annotations describing the behavior of these properties, like the one we used previously for `Price`.
 
 That's because these behaviors are contained in the OnModelCreating method of the database context. This is another way EF Core lets you control the relationship between your entities and the database.
 
