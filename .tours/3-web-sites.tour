@@ -63,20 +63,20 @@
     {
       "file": "parts/3-web-sites/ContosoPizza/Program.cs",
       "description": "Select **Insert Code** below to insert the `using` declarations that resolve the code you just added. Then select **Next**.\n\n```csharp\nusing ContosoPizza.Data;\nusing Microsoft.EntityFrameworkCore;\n \n \n```",
-      "line": 4,
+      "line": 1,
       "title": "Program.cs (continued)"
     },
     {
       "file": "parts/3-web-sites/ContosoPizza/Program.cs",
       "description": "The `AddDbContext` extension method registers `ContosoPizzaContext` with ASP.NET Core's dependency injection container.",
-      "line": 9,
+      "line": 11,
       "selection": {
         "start": {
-          "line": 8,
+          "line": 10,
           "character": 18
         },
         "end": {
-          "line": 8,
+          "line": 10,
           "character": 51
         }
       },
@@ -85,14 +85,14 @@
     {
       "file": "parts/3-web-sites/ContosoPizza/Program.cs",
       "description": "We pass the method a lambda expression that configures EF Core to use the SQL Server database provider using a connection string retrieved from configuration. The configuration value is named `ConnectionStrings:ContosoPizza`.\n\nAt runtime, ASP.NET Core will look for the configuration in *appsettings.json* and other locations for the `ConnectionStrings:ContosoPizza` configuration value. The Secrets Manager is one of the locations it checks. Let's put the value in Secrets Manager.\n\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal. You can create new terminal instances with  **Ctrl**+**Shift**+**&#x0060;** if the existing terminal is blocked by a running process.\n1. Set your location to *parts/3-web-sites/ContosoPizza*. Assuming you are starting from the *workspace* or *ef-core-for-beginners* folder, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/3-web-sites/ContosoPizza/\n    ```\n    <br />\n    \n    > Alternatively, you can open a new terminal with the desired location by right-clicking on the *parts/3-web-sites/ContosoPizza/* folder and selecting **Open in Integrated Terminal**.\n    >\n    > ![Open in Integrated Terminal screenshot](.tours/media/3-integrated-terminal.png)\n    <br />\n    \n1. Initialize the secrets store and set the configuration value.\n  \n    <br />\n    \n    ```bash\n    dotnet user-secrets init\n    dotnet user-secrets set ConnectionStrings:ContosoPizza \"Connection String Here\"\n    ```\n    <br />\n    \n    Replace the `Connection String Here` text with your SQL Server connection string.\n    \n    ### If you are using SQL Server Express LocalDB\n    \n    `Data Source=(localdb)\\\\MSSQLLocalDB;Initial Catalog=ContosoPizza;Integrated Security=True;`\n    \n    ### If you are using SQL Server in the dev container\n    \n    `Data Source=localhost;Database=ContosoPizza;Integrated Security=false;User ID=sa;Password=P@ssw0rd;`\n    \n    <br />\n    \n- [Learn more about securely storing connection strings in EF Core](https://aka.ms/ef-core-connection-strings)\n- [Learn more about Secrets Manager](https://docs.microsoft.com/aspnet/core/security/app-secrets)",
-      "line": 9,
+      "line": 11,
       "selection": {
         "start": {
-          "line": 8,
+          "line": 10,
           "character": 52
         },
         "end": {
-          "line": 9,
+          "line": 11,
           "character": 84
         }
       },
