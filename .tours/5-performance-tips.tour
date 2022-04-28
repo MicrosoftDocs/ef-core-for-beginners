@@ -40,7 +40,7 @@
     {
       "file": "parts/5-performance-tips/ContosoPizza/ContosoPizza.csproj",
       "description": "Sometimes, however, it might benefit our app's performance to wait to load the orders until they're actually needed. This is called lazy loading. To enable lazy loading, first you need to install the `Microsoft.EntityFrameworkCore.Proxies` package. Select **Insert Code** below to add a reference to `Microsoft.EntityFrameworkCore.Proxies`.\n\n```xml\n    <PackageReference Include=\"Microsoft.EntityFrameworkCore.Proxies\" Version=\"6.0.4\" />\n\n```",
-      "line": 11,
+      "line": 10,
       "title": "Lazy Loading"
     },
     {
