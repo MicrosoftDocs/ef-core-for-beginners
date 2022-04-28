@@ -122,7 +122,7 @@ This scenario requires:
 - [Loading related data](https://docs.microsoft.com/ef/core/querying/related-data)
 - [Split queries](https://docs.microsoft.com/ef/core/querying/single-split-queries)
 - [`DbContext` pooling](https://docs.microsoft.com/ef/core/performance/advanced-performance-topics#dbcontext-pooling)
-- [Raw SQL queries](https://docs.microsoft.com/en-us/ef/core/querying/raw-sql)
+- [Raw SQL queries](https://docs.microsoft.com/ef/core/querying/raw-sql)
 
 ### Supplemental Video
 

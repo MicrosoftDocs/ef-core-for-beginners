@@ -4,7 +4,151 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## My apologies--This CodeTour is a \"work in progress.\" I thought I had more time before the videos were published on YouTube. 😮 This CodeTour will be complete by 2022-04-28!"
+      "description": "## Welcome back!\n\nWelcome to Entity Framework Core for Beginners! This is **Part 5**. I'm going to walk you through the video.\n\nIn this tour, I'm going to show you some tips to get the most performance out of your EF Core applications. If you've completed **Parts 1-4**, you're pretty familiar with the tooling and how to run the app. Accordingly, I'm just going to show you the changes to make. You can determine when you want to run the app and examine the database.\n\n**Before you run the app**, make sure you use `dotnet user-secrets init` and `dotnet user-secrets set` like in **Part 3** to set your connection string.\n\nIf you're running this CodeTour in the dev container, there's **nothing else for you to do**. The database is pre-installed.\n\nIf you're running in your own environment, you should have access to a SQL Server instance (like [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb), [SQL Server on Linux](https://docs.microsoft.com/sql/linux/quickstart-install-connect-docker), or [Azure SQL Database](https://docs.microsoft.com/azure/azure-sql/database/single-database-create-quickstart)). **Make sure you've installed the sample database!** It's located at *.devcontainer/data/ContosoPizza.dacpac*. You can use [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)'s Data-tier Application Wizard to deploy the dacpac.\n\nClick **Next** below to continue."
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Pages/Customers/Index.cshtml.cs",
+      "description": "The first topic we're going to cover is change tracking. When EF Core queries a database, it stores a snapshot of the results set in memory. Any modifications you make to your entities are actually made against that snapshot, and then later written to the database. In read-only scenarios where there's no chance you'll actually want to write data back to the database, we can skip the snapshot and conserve system resources.\n\nSelect **Insert Code** to add the `AsNoTracking` method to the query. Now when we view the Customer Index view, EF Core will skip the snapshot.\n\n```csharp\nCustomer = await _context.Customers\n                    .Include(c => c.Orders)\n                    .AsNoTracking()\n                    .ToListAsync();\n```\n\n- [Learn more about tracking vs. no-tracking queries](https://docs.microsoft.com/ef/core/querying/tracking)",
+      "line": 50,
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 13
+        },
+        "end": {
+          "line": 29,
+          "character": 48
+        }
+      },
+      "title": "Change tracking"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Pages/Customers/Index.cshtml.cs",
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 13
+        },
+        "end": {
+          "line": 30,
+          "character": 36
+        }
+      },
+      "description": "In our previous videos, we've looked at using navigation properties to load related entities. Entity Framework Core allows you to specify when those related entities are read from the database. We're going to look at two patterns for loading those entities: Eager loading and lazy loading.\n\nWe'll look at eager loading first. We're already using eager loading here by way of the `Include` method. The `Include` method signals to EF Core that the related orders should be loaded on the same database query as the customers.\n\n- [Learn more about loading related data](https://docs.microsoft.com/ef/core/querying/related-data)",
+      "title": "Eager loading"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/ContosoPizza.csproj",
+      "description": "Sometimes, however, it might benefit our app's performance to wait to load the orders until they're actually needed. This is called lazy loading. To enable lazy loading, first you need to install the `Microsoft.EntityFrameworkCore.Proxies` package. Select **Insert Code** below to add a reference to `Microsoft.EntityFrameworkCore.Proxies`.\n\n```xml\n    <PackageReference Include=\"Microsoft.EntityFrameworkCore.Proxies\" Version=\"6.0.4\" />\n\n```",
+      "line": 11,
+      "title": "Lazy Loading"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Pages/Customers/Index.cshtml.cs",
+      "selection": {
+        "start": {
+          "line": 27,
+          "character": 13
+        },
+        "end": {
+          "line": 30,
+          "character": 36
+        }
+      },
+      "description": "I'm going to get rid of the `Include` method. `AsNoTracking` doesn't work with lazy loading, so I'll get rid of that too. Select **Insert Code**.\n\n```csharp\nCustomer = await _context.Customers\n                    .ToListAsync();\n```\n",
+      "line": 31,
+      "title": "Lazy loading (continued)"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Program.cs",
+      "description": "When we add the database context to the dependency injection container, add the `UseLazyLoadingProxies` method to the options. Select **Insert Code**.\n\n```csharp\nbuilder.Services.AddDbContext<ContosoPizzaContext>(options =>\n    options\n        .UseLazyLoadingProxies()\n        .UseSqlServer(builder.Configuration.GetConnectionString(\"ContosoPizza\")));\n```",
+      "line": 17,
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 1
+        },
+        "end": {
+          "line": 14,
+          "character": 83
+        }
+      },
+      "title": "Lazy loading (continued)"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Models/Customer.cs",
+      "description": "Make sure any navigation properties are marked virtual so that Entity Framework Core can override them with the proxies that it generates.",
+      "line": 25,
+      "title": "Lazy loading (continued)"
+    },
+    {
+      "title": "Lazy Loading (continued)",
+      "description": "Now I've enabled lazy loading, and the orders won't be requested from the database until they're actually needed by our code.\n\n- [Learn more about loading related data](https://docs.microsoft.com/ef/core/querying/related-data)"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Pages/Customers/Details.cshtml.cs",
+      "description": "When eager loading one-to-many datasets, EF Core defaults to using LEFT JOINs to get the entire dataset from the database in one query. This can lead to very large datasets when the data from the LEFT side of the JOIN is repeated for each record returned on the RIGHT side. This is known as a cartesian explosion, and it can be mitigated by using a feature called split queries. Split queries use multiple queries to get the same dataset.\n\nThe Customer Details page needs to use a lot of navigation properties. To use a split query, all I need to do is add the `AsSplitQuery` method. Select **Insert Code**\n\n```csharp\n            Customer = await _context.Customers\n                        .Include(c => c.Orders)\n                        .ThenInclude(o => o.OrderDetails)\n                        .ThenInclude(od => od.Product)\n                        .AsSplitQuery()\n                        .FirstOrDefaultAsync(m => m.Id == id);\n```\n\nNow when you run the app, instead of a single SQL query, there are three.\n\n- [Learn more about split queries](https://docs.microsoft.com/ef/core/querying/single-split-queries)",
+      "line": 47,
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 1
+        },
+        "end": {
+          "line": 37,
+          "character": 1
+        }
+      },
+      "title": "Split queries"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Pages/Products/Details.cshtml.cs",
+      "selection": {
+        "start": {
+          "line": 46,
+          "character": 21
+        },
+        "end": {
+          "line": 46,
+          "character": 52
+        }
+      },
+      "description": "Sometimes when working with Entity Framework Core, you need to use your own SQL rather than the SQL that it generates for you. Entity Framework Core makes this easy using the `FromSqlRaw` and `FromSqlInterpolated` methods.\n\nWe're currently loading Customer data using a `Where` method. Let's use `FromSqlInterpolated` to specify my own SQL query to retrieve some customer information from the database. Lets use an interperpolated string containing raw SQL and pass in Customer ID. Select **Insert Code**.\n\n```csharp\n.FromSqlInterpolated($\"SELECT * FROM Customers WHERE Id = {CustomerId}\")\n```\n\n- [Learn more about raw SQL queries](https://docs.microsoft.com/ef/core/querying/raw-sql)",
+      "title": "Raw SQL queries"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Pages/Products/Details.cshtml.cs",
+      "selection": {
+        "start": {
+          "line": 36,
+          "character": 46
+        },
+        "end": {
+          "line": 36,
+          "character": 84
+        }
+      },
+      "description": "We've previously discussed how Entity Framework Core uses in-memory snapshots to track changes to our entities. If we happen to have an entity cached in the snapshot, we can save ourselves a trip to the database by looking it up with the `Find` or `FindAsync` methods.\n\nHere we're using `FirstOrDefaultAsync` to look up a product from the database by its primary key. Since we're looking up an entity by primary key, we can instead use `FindAsync`. This checks the snapshot first before calling the database. Select **Insert Code**.\n\n```csharp\n.FindAsync(id);\n```\n\n- Learn more about [`Find`](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.find) and [`FindAsync`](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.dbcontext.findasync)",
+      "title": "Find and FindAsync"
+    },
+    {
+      "file": "parts/5-performance-tips/ContosoPizza/Program.cs",
+      "selection": {
+        "start": {
+          "line": 12,
+          "character": 17
+        },
+        "end": {
+          "line": 12,
+          "character": 30
+        }
+      },
+      "description": "Whenever we use a database context, there's a certain amount of overhead that goes into creating and destroying the object. We can bypass that overhead by using database context pooling to reuse our database context objects over and over again.\n\nTo use database context pooling, all we have to do is replace `AddDbContext` use the `AddDbContextPool` method. Then our database contexts will be reused over and over again. Select **Insert Code**.\n\n```csharp\n.AddDbContextPool\n```\n\n- [Learn more about `DbContext` pooling](https://docs.microsoft.com/ef/core/performance/advanced-performance-topics#dbcontext-pooling)",
+      "title": "DbContext Pooling"
+    },
+    {
+      "title": "Summary",
+      "description": "This concludes Entity Framework Core for Beginners. Be sure to check out https://aka.ms/ef-core-101 for more great learning resources!\n\nThanks for watching/touring! 🙂"
     }
   ],
   "ref": "main"

@@ -4,7 +4,200 @@
   "steps": [
     {
       "title": "Introduction",
-      "description": "## My apologies--This CodeTour is a \"work in progress.\" I thought I had more time before the videos were published on YouTube. 😮 This CodeTour will be complete by 2022-04-28!"
+      "description": "## Welcome back!\n\nWelcome to Entity Framework Core for Beginners! This is **Part 4**. I'm going to walk you through the video. \n\nIn previous tours, we've looked at using Entity Framework Core exclusively with SQL Server. In this tour, we're going to look at using Entity Framework Core with other database providers.\n\nIf you want to complete the part with Azure Cosmos DB, you'll need a free Azure Cosmos DB account **or** you can use the emulator. Refer to the links below.\n\n- [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://docs.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)\n- [Azure Cosmos DB local emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)\n- [Free Azure Account](https://azure.microsoft.com/free/dotnet/)\n\nIf you're running this CodeTour in the dev container, there's **nothing else for you to do**. We have an instance of PostgreSQL running in the container, and you have the `sqlite3` tools already installed. You also have the Azure CLI pre-installed to aid in creation of an Azure Cosmos DB account.\n\nIf you're running in your own environment, you'll need to provide an instance of [PostgreSQL](https://www.postgresql.org). You also might want a tool to view SQLite databases, like [DB Browser for SQLite](https://sqlitebrowser.org/).\n\nClick **Next** below to continue."
+    },
+    {
+      "title": "Database Providers in EF Core",
+      "description": "The database provider is a layer in the EF Core architecture that's responsible for the communication between Entity Framework Core and the database. It's a pluggable architecture, which means EF Core can support all kinds of databases. [See the full list of database providers](https://docs.microsoft.com/ef/core/providers/).\n\n![A diagram reflecting where Database Providers reside in EF Core](.tours/media/4-ef-core-architecture.png)"
+    },
+    {
+      "title": "Introduction to SQLite",
+      "description": "The first database provider we're going to look at is SQLite. SQLite is an open-source cross-platform embedded database technology. In SQLite, the entire database is stored in a single file, so it's a great choice when you don't want to take a dependency on a server-based database platform.\n\n- [Learn more about SQLite in EF Core](https://docs.microsoft.com/ef/core/providers/sqlite/)"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Program.cs",
+      "description": "This *Program.cs* is copied from **Part 1**. We're just going to add some records to a database and exit.",
+      "line": 22,
+      "title": "Program.cs"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/ContosoPizza.csproj",
+      "description": "Let's first replace the the SQL Server database provider with the SQLite database provider. Select **Insert Code** below to replace this `<PackageReference>`.\n\n```xml\n<PackageReference Include=\"Microsoft.EntityFrameworkCore.Sqlite\" Version=\"6.0.4\" />\n```\n\n> This is an alternative method to do the same task as `dotnet add package`.\n",
+      "line": 15,
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 5
+        },
+        "end": {
+          "line": 15,
+          "character": 91
+        }
+      },
+      "title": "ContosoPizza.csproj"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "Select **Insert Code** below to register the SQLite database provider.\n\n```csharp\noptionsBuilder.UseSqlite(\"Data Source=ContosoPizza.db\");\n```",
+      "line": 32,
+      "title": "ContosoPizzaContext.cs"
+    },
+    {
+      "title": "Create the SQLite database",
+      "description": "1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal. You can create new terminal instances with  **Ctrl**+**Shift**+**&#x0060;** if the existing terminal is blocked by a running process.\n1. Set your location to *parts/4-database-providers/ContosoPizza*. Assuming you are starting from the *workspace* or *ef-core-for-beginners* folder, use the following command:\n\n    <br />\n\n    ```dotnet-cli\n    cd parts/4-database-providers/ContosoPizza/\n    ```\n    <br />\n    \n    > Alternatively, you can open a new terminal with the desired location by right-clicking on the *parts/4-database-providers/ContosoPizza/* folder and selecting **Open in Integrated Terminal**.\n    >\n    > ![Open in Integrated Terminal screenshot](.tours/media/4-integrated-terminal.png)\n    <br />\n    \n1. Generate and run a migration. Then run the app to populate the database.\n  \n    <br />\n    \n    ```bash\n    dotnet ef migrations add InitialCreate\n    dotnet ef database update\n    dotnet run\n    ```\n    <br />\n1. Using your SQLite tool, open the *ContosoPizza.db* file and view the `Products` table. If you're using the dev container, the `sqlite3` tool is pre-installed. Query the `Products` table with the following command:\n\n    `sqlite3 -line ContosoPizza.db \"SELECT * FROM Products\"`\n\n    The following output is displayed:\n    \n    <br />\n    \n    ```bash\n       Id = 1\n     Name = Veggie Special Pizza\n    Price = 9.99\n    \n       Id = 2\n     Name = Deluxe Meat Pizza\n    Price = 12.99\n    ```\n"
+    },
+    {
+      "title": "Introduction to PostgreSQL",
+      "description": "Now let's do that same exercise again, but this time let's use PostgreSQL. The database provider for Postgres is provided by the PostgreSQL developer community.\n\n- [Learn more about the Npgsql Entity Framework Core Provider](https://www.npgsql.org/efcore/)"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/ContosoPizza.csproj",
+      "description": "Select **Insert Code** below to replace the SQLite database provider with the PostgreSQL database provider.\n\n```xml\n<PackageReference Include=\"Npgsql.EntityFrameworkCore.PostgreSQL\" Version=\"6.0.4\" />\n```\n\n",
+      "line": 15,
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 5
+        },
+        "end": {
+          "line": 15,
+          "character": 88
+        }
+      },
+      "title": "ContosoPizza.csproj"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "description": "Select **Insert Code** to replace the `UseSqlite` extension method with `UseNpgsql`.\n\n```csharp\noptionsBuilder.UseNpgsql(\"Connection String Here\");\n```\n",
+      "line": 32,
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 13
+        },
+        "end": {
+          "line": 32,
+          "character": 69
+        }
+      },
+      "title": "ContosoPizzaContext.cs"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 39
+        },
+        "end": {
+          "line": 32,
+          "character": 61
+        }
+      },
+      "description": "Replace the `Connection String Here` text with your connection string. If you're using the dev container, select **Insert Code** to insert the connection string shown below.\n\n```text\nUser ID=postgres;Password=P@ssw0rd;Host=localhost;Port=5432;Database=ContosoPizza;\n```",
+      "title": "ContosoPizzaContext.cs (continued)"
+    },
+    {
+      "title": "Create the PostgreSQL database",
+      "description": "1. Save all your changes.\n1. **Delete** the *parts/4-database-providers/ContosoPizza/Migrations* folder and its contents.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Generate and run a migration. Then run the app to populate the database.\n  \n    <br />\n    \n    ```bash\n    dotnet ef migrations add InitialCreate\n    dotnet ef database update\n    dotnet run\n    ```\n    <br />\n1. Using your PostgreSQL tool, open the `ContosoPizza` database and view the `Products` table. If you're using the dev container, use the PostgreSQL Explorer extension (preinstalled):\n\n    1. Press **Ctrl**+**Shift**+**P** to open the command palette.\n    1. Search for and select **PostgreSQL: Add Connection**. Set up a connection with the following information:\n        1. **hostname**: localhost\n        1. **PostgreSQL user to authenticate as**: postgres\n        1. **password**: P@ssw0rd\n        1. **port**: 5432\n        1. Press **Enter** to accept the defaults for the rest of the prompts.\n    1. Press **Ctrl**+**Shift**+**P** to open the command palette.\n    1. Search for and select **PostgreSQL Explorer: Focus on PostgreSQL View**.\n    1. Using PostgreSQL Explorer, expand the **localhost** > **ContosoPizza** > **public** > **Products** nodes to view the columns in the `Products` table.\n    1. Right-click on the `Products` table and select **Select...** > **Run Select Top 1000**.\n        \n        ![The contents of the `Products` table displays](.tours/media/4-postgres-output.png)\n\n\n    "
+    },
+    {
+      "title": "Introduction to Azure Cosmos DB",
+      "description": "The final database provider we're going to look at is Azure Cosmos DB. Cosmos DB is a fully managed NoSQL database for modern app development. This means that instead of working like a relational database management system, it works with JSON documents.\n\n- [Learn more about the Azure Cosmos DB provider](https://docs.microsoft.com/ef/core/providers/cosmos/)\n\nFor the steps ahead, you can use an actual Cosmos DB account in the cloud, or you can use the local emulator.\n\n- [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://docs.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)\n- [Azure Cosmos DB local emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)\n- [Free Azure Account](https://azure.microsoft.com/free/dotnet/)"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/ContosoPizza.csproj",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 5
+        },
+        "end": {
+          "line": 15,
+          "character": 89
+        }
+      },
+      "description": "Select **Insert Code** below to replace the PostgreSQL database provider with the Cosmos DB database provider.\n\n```xml\n<PackageReference Include=\"Microsoft.EntityFrameworkCore.Cosmos\" Version=\"6.0.4\" />\n```\n\n",
+      "title": "ContosoPizza.csproj"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 13
+        },
+        "end": {
+          "line": 32,
+          "character": 124
+        }
+      },
+      "description": "Select **Insert Code** to replace the `UseNpgsql` extension method with `UseCosmos`.\n\n```csharp\noptionsBuilder.UseCosmos(\"Connection String Here\", \"ContosoPizza\");\n```\n",
+      "title": "ContosoPizzaContext.cs (continued)"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Data/ContosoPizzaContext.cs",
+      "selection": {
+        "start": {
+          "line": 32,
+          "character": 39
+        },
+        "end": {
+          "line": 32,
+          "character": 61
+        }
+      },
+      "description": "Replace the `Connection String Here` text with your connection string.",
+      "title": "ContosoPizzaContext.cs (continued)"
+    },
+    {
+      "title": "Do we need a migration?",
+      "description": "Since Cosmos DB is a NoSQL database, there aren't any database schemas to update. You can delete the *parts/4-database-providers/ContosoPizza/Migrations* folder and its contents if you want."
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Program.cs",
+      "description": "Since there are no migrations to create the initial database, let's call `context.Database.EnsureCreated` in *Program.cs* to make sure the database gets created. `EnsureCreated` can cause performance issues, so avoid using it in production.\n\n- [Learn more about Create and Drop APIs](https://docs.microsoft.com/ef/core/managing-schemas/ensure-created)\n\nSelect **Insert Code** to make the change.\n\n```csharp\n\ncontext.Database.EnsureCreated();\n\n```",
+      "line": 7,
+      "title": "Program.cs"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Models/Product.cs",
+      "description": "Cosmos DB doesn't do autoincrementing IDs. Let's generate a unique ID for each `Product`. Select **Insert Code** to change `Id` to a string initialized as a GUID.\n\n```csharp\npublic string Id { get; set; } = Guid.NewGuid().ToString();\n```",
+      "line": 13,
+      "selection": {
+        "start": {
+          "line": 13,
+          "character": 9
+        },
+        "end": {
+          "line": 13,
+          "character": 36
+        }
+      },
+      "title": "Product.cs"
+    },
+    {
+      "file": "parts/4-database-providers/ContosoPizza/Models/OrderDetail.cs",
+      "selection": {
+        "start": {
+          "line": 10,
+          "character": 9
+        },
+        "end": {
+          "line": 10,
+          "character": 43
+        }
+      },
+      "description": "Since `OrderDetail.ProductId` is a foreign key to `Product.Id`, we need to change `ProductId` to a string as well. Select **Insert Code** to make the change.\n\n```csharp\npublic string ProductId { get; set; } = null!;\n```\n",
+      "title": "OrderDetail.cs"
+    },
+    {
+      "title": "Create the Azure Cosmos DB database",
+      "description": "1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Run the app to populate the database.\n  \n    <br />\n    \n    ```bash\n    dotnet run\n    ```\n    <br />\n1. Return to the Azure Portal (or emulator tools) to browse the new data. You may need to refresh the data.\n\n    ![The contents of the `ContosoPizza` database](.tours/media/4-cosmos-db.png)\n\n\n    "
+    },
+    {
+      "title": "Summary",
+      "description": "In this tour, we looked at how EF Core uses database providers to support a plethora of different database technologies. We looked at just three of the possible database providers you can use. [Visit the Entity Framework Core documentation to see the full list of supported providers](https://docs.microsoft.com/ef/core/providers/)."
     }
   ],
   "ref": "main"
