@@ -257,7 +257,7 @@
       "description": "Go to the SQL Server extension tab.\n\n![SQL Server tab](.tours/media/1-sql-server.png)\n\n1. Expand the existing connection (or add one pointing to your SQL environment).\n1. Expand the *ContosoPizza-Part1* database.\n1. Expand the *Tables* node to view the tables in the database.\n1. Expand each table and its columns node to view the schema.\n\nWhoops, we should have included a column for Email in the `Customers` table! Let's do that now."
     },
     {
-      "file": "notes/1-getting-started/Customer.cs",
+      "file": "parts/1-getting-started/ContosoPizza/Models/Customer.cs",
       "description": "Select **Insert Code** below to insert the code for the `Email` property. Then select Next.\n\n```csharp\npublic string? Email { get; set; }\n```",
       "line": 10,
       "title": "Add Email property"
@@ -436,7 +436,7 @@
     {
       "file": "parts/1-getting-started/ContosoPizza/Program.cs",
       "description": "Select **Insert Code** below to insert the \"update\" code. Then select **Next**.\n```csharp\n\nvar veggieSpecial = context.Products\n                       .Where(p => p.Name == \"Veggie Special Pizza\")\n                       .FirstOrDefault();\n\nif (veggieSpecial is Product)\n{\n    veggieSpecial.Price = 10.99M;\n}\n\ncontext.SaveChanges();\n\n```",
-      "line": 16,
+      "line": 5,
       "title": "Update an entity",
       "selection": {
         "start": {
