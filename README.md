@@ -59,6 +59,8 @@ You are responsible for determining your own connection information for all of t
 1. Review the recommended extensions and install them.
 1. When everything is done loading, find the CodeTour for the video you're watching in the **CODETOUR** pane in the **EXPLORER** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
 
+![Animation showing the launching of the first CodeTour](.tours/media/readme-launch-codetour.gif)
+
 ### Windows/macOS/Linux with Docker/containers and Visual Studio Code
 
 This scenario uses open source tooling and supports any operating system. The development container includes ALL prerequisties, including SQL Server, PostgreSQL, .NET SDK, and more. The ContosoPizza SQL Server database is also pre-configured. This is the recommended scenario.
@@ -71,12 +73,14 @@ This scenario requires:
 1. Clone the repository.
 1. Open Visual Studio Code without opening a folder.
 1. Press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> to open the command palette. Search for and select **Remote Containers-Open Folder in Container...**. Select the entire repository folder.
-1. When everything is done loading, find the CodeTour for the video you're watching in the **CODETOUR** pane in the **EXPLORER** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
+1. When everything is done loading, find the CodeTour for the video you're watching in the **CODETOUR** pane in the **EXPLORER** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links). See [the animation above](.tours/media/readme-launch-codetour.gif) to see an example of launching a CodeTour.
 
 **Alternatively**, this scenario can be completed **in-browser with no local tools** using [GitHub Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/).
 
 1. Just navigate to the [repository](https://github.com/MicrosoftDocs/ef-core-for-beginners), select **Code**, and create a new Codespace using the `main` branch. 
 1. When everything is done loading, locate the CodeTour pane in the explorer, find the CodeTour for the video you're watching, and launch as described above.
+
+![Animation showing the launching of the CodeSpace on GitHub](.tours/media/readme-launch-codespace.gif)
 
 ## Relevant links
 
