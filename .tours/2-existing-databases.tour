@@ -8,7 +8,7 @@
     },
     {
       "file": "parts/2-existing-databases/ContosoPizza/ContosoPizza.csproj",
-      "description": "The `Microsoft.EntityFrameworkCore.SqlServer`, `.Tools`, and `.Design` packages are already installed.\n\nIf you completed **Part 1**, you should already have the `dotnet-ef` tool installed. If you need it, install it as follows:\n\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Install the `dotnet-ef` tool as a global tool:\n  \n    <br />\n    \n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n    \n    > We're specifying version `6.0.4` here to ensure the `dotnet-ef` tool version matches the dependencies in the *.csproj*.\n    <br />\n\n\n",
+      "description": "The `Microsoft.EntityFrameworkCore.SqlServer`, `.Tools`, and `.Design` packages are already installed.\n\nIf you completed **Part 1**, you should already have the `dotnet-ef` tool installed. If you need it, install it as follows:\n\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Install the `dotnet-ef` tool as a global tool:\n\n>> cd parts/2-existing-databases/ContosoPizza\n  \n>> dotnet tool install -g dotnet-ef --version 6.0.4\n\n\n[Open URL](command:codetour.sendTextToTerminal?[\"touch Models/Product.cs\"])\n[refresh](command:vscode.commands.executeCommand(\"workbench.files.action.refreshFilesExplorer\"))\n[make a new file](/workspace/parts/2-existing-databases/ContosoPizza/Models/Product.cs)",
       "line": 19,
       "selection": {
         "start": {
