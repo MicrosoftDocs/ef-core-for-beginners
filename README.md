@@ -35,11 +35,11 @@ The courseware was designed to be followed in one of three scenarios:
 This is the scenario featured in the video. This scenario requires:
 
 - [Visual Studio](https://www.visualstudio.com) (latest)
-- [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
+- [SQL Server Express LocalDB](https://learn.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
 - [PostgreSQL](https://www.postgres.org)
 
 1. Clone the repository.
-1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) in your LocalDB instance. Use a tool like [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio) or SQL Server Management Studio.
+1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) in your LocalDB instance. Use a tool like [Visual Studio Code](https://learn.microsoft.com/sql/tools/visual-studio-code-extensions/mssql/mssql-extension-visual-studio-code) or SQL Server Management Studio.
 1. For each video (parts 1-5), open the desired project file in Visual Studio. Follow along in the videos. 
 
 ### Windows/macOS/Linux with .NET CLI and Visual Studio Code
@@ -54,7 +54,7 @@ This scenario uses open source tooling and supports any operating system. This s
 You are responsible for determining your own connection information for all of the above.
 
 1. Clone the repository.
-1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) on an accessible SQL Server instance. Use a tool like [Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio) or SQL Server Management Studio.
+1. Install the [ContosoPizza database](.devcontainer/data/ContosoPizza.dacpac) on an accessible SQL Server instance. Use a tool like [Azure Data Studio](https://learn.microsoft.com/sql/azure-data-studio/download-azure-data-studio) or SQL Server Management Studio.
 1. Open the entire repository folder in Visual Studio Code.
 1. Review the recommended extensions and install them.
 1. When everything is done loading, find the CodeTour for the video you're watching in the **CODETOUR** pane in the **EXPLORER** in VS Code. Right-click on the CodeTour and select **Start Tour** to begin the walkthrough. The walkthrough is in English and follows the videos step-by-step (with additional information and links).
@@ -90,50 +90,50 @@ This scenario requires:
 
 - [Starter project](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/1-getting-started/ContosoPizza)
 - [Notes and code snippets](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part1)
-- [Migrations Overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)
-- [Null safety in C# (Microsoft Learn)](https://docs.microsoft.com/learn/modules/csharp-null-safety/)
-- [Persist and retrieve relational data with Entity Framework Core (Microsoft Learn)](https://docs.microsoft.com/learn/modules/persist-data-ef-core/)
+- [Migrations Overview](https://learn.microsoft.com/ef/core/managing-schemas/migrations/)
+- [Null safety in C# (Microsoft Learn)](https://learn.microsoft.com/learn/modules/csharp-null-safety/)
+- [Persist and retrieve relational data with Entity Framework Core (Microsoft Learn)](https://learn.microsoft.com/learn/modules/persist-data-ef-core/)
 
 ### Part 2
 
 - [Starter project](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/2-existing-databases/ContosoPizza)
 - [Notes and code snippets](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part2)
-- [Reverse Engineering](https://docs.microsoft.com/ef/core/managing-schemas/scaffolding)
+- [Reverse Engineering](https://learn.microsoft.com/ef/core/managing-schemas/scaffolding)
 
 ### Part 3
 
 - [Starter project](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/3-web-sites/ContosoPizza)
 - [Notes and code snippets](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part3)
-- [Safe storage of app secrets in development in ASP.NET Core](https://docs.microsoft.com/aspnet/core/security/app-secrets)
-- [Tutorial: Create a Razor Pages web app with ASP.NET Core](https://docs.microsoft.com/aspnet/core/tutorials/razor-pages)
+- [Safe storage of app secrets in development in ASP.NET Core](https://learn.microsoft.com/aspnet/core/security/app-secrets)
+- [Tutorial: Create a Razor Pages web app with ASP.NET Core](https://learn.microsoft.com/aspnet/core/tutorials/razor-pages)
 - [Connection Strings (Entity Framework Core docs)](https://aka.ms/ef-core-connection-strings)
 
 ### Part 4
 
 - [Starter project](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/4-database-providers/ContosoPizza)
 - [Notes and code snippets](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part4)
-- [Full list of database providers](https://docs.microsoft.com/ef/core/providers/).
+- [Full list of database providers](https://learn.microsoft.com/ef/core/providers/).
 - [DB Browser for SQLite](https://sqlitebrowser.org/)
 - [PostgreSQL](https://www.postgresql.org/)
-- [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://docs.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)
-- [Azure Cosmos DB local emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)
+- [Quickstart: Create an Azure Cosmos account, database, container, and items from the Azure portal](https://learn.microsoft.com/azure/cosmos-db/sql/create-cosmosdb-resources-portal)
+- [Azure Cosmos DB local emulator](https://learn.microsoft.com/azure/cosmos-db/local-emulator)
 - [Free Azure Account](https://azure.microsoft.com/free/dotnet/)
 
 ### Part 5
 
 - [Starter project](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/parts/5-performance-tips/ContosoPizza)
 - [Notes and code snippets](https://github.com/MicrosoftDocs/ef-core-for-beginners/tree/main/notes/part5)
-- [No-tracking queries](https://docs.microsoft.com/ef/core/querying/tracking#no-tracking-queries)
-- [Loading related data](https://docs.microsoft.com/ef/core/querying/related-data)
-- [Split queries](https://docs.microsoft.com/ef/core/querying/single-split-queries)
-- [`DbContext` pooling](https://docs.microsoft.com/ef/core/performance/advanced-performance-topics#dbcontext-pooling)
-- [Raw SQL queries](https://docs.microsoft.com/ef/core/querying/raw-sql)
+- [No-tracking queries](https://learn.microsoft.com/ef/core/querying/tracking#no-tracking-queries)
+- [Loading related data](https://learn.microsoft.com/ef/core/querying/related-data)
+- [Split queries](https://learn.microsoft.com/ef/core/querying/single-split-queries)
+- [`DbContext` pooling](https://learn.microsoft.com/ef/core/performance/advanced-performance-topics#dbcontext-pooling)
+- [Raw SQL queries](https://learn.microsoft.com/ef/core/querying/raw-sql)
 
 ### Supplemental Video
 
 - [CodeTour extension](https://marketplace.visualstudio.com/items?itemName=vsls-contrib.codetour)
-- [SQL Server Express Local DB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
-- [Download and install Azure Data Studio](https://docs.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
+- [SQL Server Express Local DB](https://learn.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15)
+- [Download and install Azure Data Studio](https://learn.microsoft.com/sql/azure-data-studio/download-azure-data-studio)
 - [Developing inside a container (Visual Studio Code)](https://code.visualstudio.com/docs/remote/containers)
 - [GitHub Codespaces (Visual Studio Code)](https://code.visualstudio.com/docs/remote/codespaces)
 
@@ -167,3 +167,4 @@ Privacy information can be found at https://privacy.microsoft.com/en-us/
 
 Microsoft and any contributors reserve all other rights, whether under their respective copyrights, patents,
 or trademarks, whether by implication, estoppel or otherwise.
+
