@@ -9,6 +9,7 @@ on:
     - '**.csproj'
     - '**.cshtml'
     - '**.css'
+    - '**.tour'
 
 env:
   DOTNET_VERSION: '6.0.x' # The .NET SDK version to use
@@ -37,3 +38,20 @@ jobs:
       
       - name: Build Step - ${{ matrix.project }}
         run: dotnet build ./parts/${{ matrix.project }}/ContosoPizza/ContosoPizza.csproj
+
+  validate-tours:
+
+    name: Validate CodeTour Files
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
+
+      - name: Validate that every .tour file is valid JSON
+        run: |
+          for tour in .tours/*.tour; do
+            echo "Validating $tour"
+            python3 -m json.tool "$tour" > /dev/null
+          done

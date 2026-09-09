@@ -199,6 +199,5 @@
       "title": "Summary",
       "description": "In this tour, we looked at how EF Core uses database providers to support a plethora of different database technologies. We looked at just three of the possible database providers you can use. [Visit the Entity Framework Core documentation to see the full list of supported providers](https://docs.microsoft.com/ef/core/providers/)."
     }
-  ],
-  "ref": "main"
+  ]
 }

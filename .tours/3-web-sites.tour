@@ -282,6 +282,5 @@
       "title": "Summary",
       "description": "In this tour, we saw how easy it is to use ASP.NET Core along with Entity Framework Core to streamline your web development. In the next tour, we're going to look at using different database providers with Entity Framework Core."
     }
-  ],
-  "ref": "main"
+  ]
 }

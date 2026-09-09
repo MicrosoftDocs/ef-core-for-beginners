@@ -242,7 +242,7 @@
     },
     {
       "title": "Create a migration",
-      "description": "Now that we've created our entity model, we're going to create something called a [migration](https://docs.microsoft.com/ef/core/managing-schemas/migrations/). The EF Core migrations feature is a tool that makes it easy to create and evolve our database.\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Install the `dotnet-ef` tool as a global tool:\n  \n    <br />\n    \n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n    \n    > As a reminder, we're specifying version `6.0.4` here to ensure the `dotnet-ef` tool version matches the projects in parts 2-5.\n    <br />\n\n1. Use the `dotnet-ef` tool to create the `InitialCreate` migration:\n  \n    <br />\n    \n    ```bash\n    dotnet ef migrations add InitialCreate\n    ```\n    <br />\n\n- [Migrations overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)"
+      "description": "Now that we've created our entity model, we're going to create something called a [migration](https://docs.microsoft.com/ef/core/managing-schemas/migrations/). The EF Core migrations feature is a tool that makes it easy to create and evolve our database.\n\n1. Save all your changes.\n1. Press **Ctrl**+**&#x0060;** to switch to the terminal.\n1. Install the `dotnet-ef` tool as a global tool:\n  \n    <br />\n    \n    ```bash\n    dotnet tool install -g dotnet-ef --version 6.0.4\n    ```\n    <br />\n    \n    > As a reminder, we're specifying version `6.0.4` here to ensure the `dotnet-ef` tool version matches the projects in parts 2-5.\n    <br />\n\n    > If the `dotnet ef` command isn't found after the tool is installed, the tools folder isn't on your `PATH` yet. Add it with the following command (in the dev container), or open a new terminal:\n  \n    <br />\n    \n    ```bash\n    export PATH=\"$PATH:$HOME/.dotnet/tools\"\n    ```\n    <br />\n\n1. Use the `dotnet-ef` tool to create the `InitialCreate` migration:\n  \n    <br />\n    \n    ```bash\n    dotnet ef migrations add InitialCreate\n    ```\n    <br />\n\n- [Migrations overview](https://docs.microsoft.com/ef/core/managing-schemas/migrations/)"
     },
     {
       "title": "Examine InitialCreate migration",
@@ -515,6 +515,5 @@
       "title": "Summary",
       "description": "That's how easy it is to use Entity Framework Core to persist .NET objects in a database! In this walkthrough, we used EF Core migrations to create a new database from our code. In the next walkthrough, I'm going to show you how to go the other way, scaffolding code from an existing database."
     }
-  ],
-  "ref": "main"
+  ]
 }
