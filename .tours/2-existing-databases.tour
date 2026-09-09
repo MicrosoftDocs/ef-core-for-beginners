@@ -190,6 +190,5 @@
       "title": "Summary",
       "description": "Now we've seen how Entity Framework Core can work with an existing database! In the next walkthrough, I'm going to show you how to use Entity Framework Core with ASP.NET Core to streamline your web development."
     }
-  ],
-  "ref": "main"
+  ]
 }
