@@ -29,11 +29,11 @@ jobs:
         - 5-performance-tips
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: ${{ env.DOTNET_VERSION }}
+      - uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@8e6bd2905eef86446227f003dda1deb3916c4aaf # v2.2.1
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
       
-    - name: Build Step - ${{ matrix.project }}
-      run: dotnet build ./parts/${{ matrix.project }}/ContosoPizza/ContosoPizza.csproj
+      - name: Build Step - ${{ matrix.project }}
+        run: dotnet build ./parts/${{ matrix.project }}/ContosoPizza/ContosoPizza.csproj
