@@ -30,7 +30,7 @@ shopt -s nullglob
 for f in "$sqlpath"/*.sql
 do
     echo "Executing $f"
-    /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$SApassword" -d master -i "$f"
+    /opt/mssql-tools/bin/sqlcmd -b -S localhost -U sa -P "$SApassword" -d master -i "$f"
 done
 
 dacpacs=("$dacpath"/*.dacpac)
